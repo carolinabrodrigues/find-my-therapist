@@ -5,7 +5,8 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import User from './pages/User';
 import Profile from './pages/Profile';
-import Footer from './components/Footer';
+import Questions from './pages/Questions';
+import Age from './components/questions/Age';
 
 function App() {
   return (
@@ -16,11 +17,11 @@ function App() {
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
         {/* Need to be wrapped by IsPrivate */}
+        <Route path='/questions' element={<Questions />} />
         <Route path='/user/:id' element={<User />} />
         <Route path='/profile/:id' element={<Profile />} />
+        <Route path='/age' element={<Age />} />
       </Routes>
-
-      <Footer />
     </div>
   );
 }
