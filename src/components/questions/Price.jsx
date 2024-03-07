@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useContext } from 'react';
 import { ProfileContext } from '../../context/profile.context';
+import { AuthContext } from '../../context/auth.context';
 
 function Price() {
   const [price, setPrice] = useState(0);
   const { profile, setProfile, handleSubmit } = useContext(ProfileContext);
+  const { user } = useContext(AuthContext);
 
   const handleNext = () => {
     setProfile({ ...profile, price: parseInt(price) });
@@ -16,7 +18,11 @@ function Price() {
     <div>
       <h2>STEP 3: Price</h2>
       {/* create another question for the therapist */}
-      <p>What is the most that you are willing to pay per session?</p>
+      {user.isTherapist ? (
+        <p>What is your price per session?</p>
+      ) : (
+        <p>What is the most that you are willing to pay per session?</p>
+      )}
       <input
         type='number'
         name='price'

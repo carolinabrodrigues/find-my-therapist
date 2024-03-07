@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useContext } from 'react';
 import { ProfileContext } from '../../context/profile.context';
+import { AuthContext } from '../../context/auth.context';
 
 function PsyApproach() {
   const [psyApproach, setPsyApproach] = useState([]);
   const { profile, setProfile, setPage } = useContext(ProfileContext);
+  const { user } = useContext(AuthContext);
 
   const handleCognitive = () => {
     setPsyApproach(prevApproach => {
@@ -33,9 +35,12 @@ function PsyApproach() {
     console.log('profile inside handle next', profile);
 
     // if user is therapist - go to page 8
-    setPage(8);
-
-    // if user is client - go to page 9
+    if (user.isTherapist) {
+      setPage(8);
+    } else {
+      // if user is client - go to page 9
+      setPage(9);
+    }
   };
 
   return (

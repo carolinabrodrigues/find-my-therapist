@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useContext } from 'react';
 import { ProfileContext } from '../../context/profile.context';
+import { AuthContext } from '../../context/auth.context';
 
 function TherapySetup() {
   const [therapySetup, setTherapySetup] = useState([]);
   const [checkedOnline, setCheckedOnline] = useState(false);
   const [checkedInPerson, setCheckedInPerson] = useState(false);
   const { profile, setProfile, setPage } = useContext(ProfileContext);
+  const { user } = useContext(AuthContext);
 
   const handleOnline = () => {
     setCheckedOnline(!checkedOnline);
@@ -36,20 +38,24 @@ function TherapySetup() {
     setProfile({ ...profile, therapySetup });
 
     console.log('profile inside handle next', profile);
-    // if user is therapist & picked in-person - go to page 5
-    if (therapySetup.includes('In-person')) {
-      setPage(5);
-    }
 
-    // if user is therapist & picked only online - go to page 6
-    if (
-      therapySetup.includes('Online') &&
-      !therapySetup.find(setup => setup === 'In-person')
-    ) {
-      setPage(6);
-    }
+    if (user.isTherapist) {
+      // if user is therapist & picked in-person - go to page 5
+      if (therapySetup.includes('In-person')) {
+        setPage(5);
+      }
 
-    // if user is client - go to page 7
+      // if user is therapist & picked only online - go to page 6
+      if (
+        therapySetup.includes('Online') &&
+        !therapySetup.find(setup => setup === 'In-person')
+      ) {
+        setPage(6);
+      }
+    } else {
+      // if user is client - go to page 7
+      setPage(7);
+    }
   };
 
   return (
