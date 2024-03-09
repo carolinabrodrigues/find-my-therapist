@@ -12,10 +12,19 @@ function MatchedProfiles() {
 
   useEffect(() => {
     getUserMatches(user._id);
-  }, [user]);
+  }, [user, getUserMatches]);
 
   console.log('matches', matches);
 
+  /* const showProfiles = () => {
+
+    for (let i = 0; i < matches.length; i++) {
+      const element = matches[i];
+      
+    }
+
+  }
+ */
   return (
     <div>
       <NavbarApp />

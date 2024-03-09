@@ -39,7 +39,7 @@ function App() {
           }
         />
         <Route
-          path='/user/:id'
+          path='/user'
           element={
             <IsPrivate>
               <User />
