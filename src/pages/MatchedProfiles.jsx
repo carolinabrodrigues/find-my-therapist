@@ -7,7 +7,8 @@ import { MatchesContext } from '../context/matches.context';
 
 function MatchedProfiles() {
   const { user } = useContext(AuthContext);
-  const { matches, getUserMatches } = useContext(MatchesContext);
+  const { matches, getUserMatches, setMatchPage } = useContext(MatchesContext);
+
   console.log('user', user);
 
   useEffect(() => {
@@ -16,19 +17,27 @@ function MatchedProfiles() {
 
   console.log('matches', matches);
 
-  /* const showProfiles = () => {
+  const showProfiles = () => {
+    if (!user.isTherapist) {
+      if (matches.length <= 0) {
+        return <p>No profiles match your criteria right now</p>;
+      } else {
+        for (let i = 0; i < matches.length; i++) {
+          setMatchPage(i + 1);
 
-    for (let i = 0; i < matches.length; i++) {
-      const element = matches[i];
-      
+          return <TherapistProfile matchId={matches[i]._id} />;
+        }
+      }
+    } else {
+      // this logic is not complete
+      <ClientProfile />;
     }
+  };
 
-  }
- */
   return (
     <div>
       <NavbarApp />
-      {user && user.isTherapist ? <ClientProfile /> : <TherapistProfile />}
+      {user && showProfiles(user.isTherapist)}
     </div>
   );
 }

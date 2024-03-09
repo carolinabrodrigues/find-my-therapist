@@ -26,6 +26,11 @@ export const getAllProfiles = () => {
   return axios.get(`${baseURL}/profiles`);
 };
 
+// GET one Profile by User & Match
+export const getMatchedProfile = (userId, matchId) => {
+  return axios.get(`${baseURL}/profiles/${userId}/${matchId}`);
+};
+
 // GET one Profile by ID
 export const getProfile = id => {
   return axios.get(`${baseURL}/profiles/${id}`);

@@ -11,7 +11,6 @@ function Navbar() {
       <Link to='/'>
         <img src={logo} alt='logo image' />
       </Link>
-
       {/* when NOT logged in */}
       <div>
         <Link to='/login'>Have an account?</Link>
@@ -19,11 +18,11 @@ function Navbar() {
           <button>Register</button>
         </Link>
       </div>
-
       {/* when logged in */}
       <Link to='/user'>
         <button>My Account</button>
       </Link>
+      <Link to='/questions'>Questions</Link>
       <button onClick={logoutUser}>Logout</button>
     </nav>
   );
