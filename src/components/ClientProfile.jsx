@@ -1,10 +1,11 @@
 import { MatchesContext } from '../context/matches.context';
 import { AuthContext } from '../context/auth.context';
 import { useContext, useEffect } from 'react';
+import { updateMatch } from '../api/matches.api';
 
 function ClientProfile({ matchId }) {
   const { user } = useContext(AuthContext);
-  const { matches, getOneMatchedProfile, matchedProfile } =
+  const { matches, match, getOneMatchedProfile, matchedProfile } =
     useContext(MatchesContext);
 
   useEffect(() => {
@@ -12,6 +13,28 @@ function ClientProfile({ matchId }) {
   }, [matches]);
 
   console.log('matched profile:', matchedProfile);
+
+  const handleAccept = async () => {
+    try {
+      const updatedMatch = { ...match, matchStatus: 'Accepted by Therapist' };
+      console.log('match updated?', updatedMatch);
+
+      updateMatch(updatedMatch);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDismiss = async () => {
+    try {
+      const updatedMatch = { ...match, matchStatus: 'Rejected by Therapist' };
+      console.log('match updated?', updatedMatch);
+
+      updateMatch(updatedMatch);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -43,8 +66,8 @@ function ClientProfile({ matchId }) {
         <p>{matchedProfile.gender}</p>
       </div>
       <div className='ProfileActions'>
-        <button>Dismiss</button>
-        <button>Accept</button>
+        <button onClick={handleDismiss}>Dismiss</button>
+        <button onClick={handleAccept}>Accept</button>
       </div>
     </>
   );

@@ -12,9 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Router>
       <AuthProviderWrapper>
         <MatchesProviderWrapper>
-          <ProfileProviderWrapper>
-            <App />
-          </ProfileProviderWrapper>
+          <App />
         </MatchesProviderWrapper>
       </AuthProviderWrapper>
     </Router>

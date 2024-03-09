@@ -24,6 +24,7 @@ function Navbar() {
       </Link>
       <Link to='/questions'>Questions</Link>
       <button onClick={logoutUser}>Logout</button>
+      <Link to='/matchedprofiles'>Matched Profiles</Link>
     </nav>
   );
 }

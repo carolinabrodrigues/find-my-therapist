@@ -11,36 +11,21 @@ const MatchesContext = createContext();
 const MatchesProviderWrapper = props => {
   const [matches, setMatches] = useState([]);
   const [matchPage, setMatchPage] = useState(0);
-  const [matchedProfile, setMatchedProfile] = useState({});
+  const [matchedProfile, setMatchedProfile] = useState(null);
   const [match, setMatch] = useState({});
-
-  const getUserMatches = async userId => {
-    try {
-      const response = await getAllUserMatches(userId);
-      setMatches(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getMatchById = async id => {
-    try {
-      const response = await getMatch(id);
-      setMatch(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const getOneMatchedProfile = async (userId, matchId) => {
     try {
       const response = await getMatchedProfile(userId, matchId);
       setMatchedProfile(response.data);
+      console.log('response', response.data);
     } catch (error) {
       console.log(error);
     }
   };
+  console.log('matches inside matches context:', matches);
 
+  console.log('matched profile in matches context:', matchedProfile);
   return (
     <MatchesContext.Provider
       value={{
@@ -48,8 +33,6 @@ const MatchesProviderWrapper = props => {
         setMatches,
         match,
         setMatch,
-        getUserMatches,
-        getMatchById,
         matchedProfile,
         getOneMatchedProfile,
         matchPage,

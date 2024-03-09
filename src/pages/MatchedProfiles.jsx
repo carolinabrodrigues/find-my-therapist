@@ -4,40 +4,48 @@ import ClientProfile from '../components/ClientProfile';
 import { useContext, useEffect } from 'react';
 import { AuthContext } from '../context/auth.context';
 import { MatchesContext } from '../context/matches.context';
+import { getAllUserMatches } from '../api/matches.api';
 
 function MatchedProfiles() {
   const { user } = useContext(AuthContext);
-  const { matches, getUserMatches, setMatchPage } = useContext(MatchesContext);
+  const { matches, setMatches } = useContext(MatchesContext);
 
-  console.log('user', user);
+  const getUserMatches = async userId => {
+    try {
+      const response = await getAllUserMatches(userId);
+      setMatches(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     getUserMatches(user._id);
-  }, [user, getUserMatches]);
+  }, []);
 
-  console.log('matches', matches);
-
-  const showProfiles = () => {
+  /* const showProfiles = () => {
     if (!user.isTherapist) {
       if (matches.length <= 0) {
         return <p>No profiles match your criteria right now</p>;
       } else {
-        for (let i = 0; i < matches.length; i++) {
-          setMatchPage(i + 1);
-
-          return <TherapistProfile matchId={matches[i]._id} />;
-        }
+        return matches.map(match => (
+          <TherapistProfile key={match._id} matchId={match._id} />
+        ));
       }
-    } else {
-      // this logic is not complete
-      <ClientProfile />;
     }
-  };
+  }; */
+
+  //   console.log('match 1', matches[0]);
 
   return (
     <div>
+      <h3>Here</h3>
       <NavbarApp />
-      {user && showProfiles(user.isTherapist)}
+      {/*       {user && showProfiles()}
+       */}
+      {user && matches.length > 0 && (
+        <TherapistProfile matchId={matches[0]._id} />
+      )}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseURL = `${import.meta.env.VITE_API}/auth`;
+const baseURL = `${import.meta.env.VITE_API}/api`;
 
 // make sure we send the token to backend everytime there's an API call for matches
 const setAuthorizationHeaders = () => {
@@ -28,7 +28,10 @@ export const getAllProfiles = () => {
 
 // GET one Profile by User & Match
 export const getMatchedProfile = (userId, matchId) => {
-  return axios.get(`${baseURL}/profiles/${userId}/${matchId}`);
+  return axios.get(`${baseURL}/profiles/${userId}/${matchId}`).catch(error => {
+    console.error('Error fetching all profiles:', error);
+    throw error;
+  });
 };
 
 // GET one Profile by ID
