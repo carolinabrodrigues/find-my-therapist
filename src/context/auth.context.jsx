@@ -9,6 +9,8 @@ function AuthProviderWrapper(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
 
+  console.log('isLoggedIn?', isLoggedIn);
+
   // we need to storage the token in the browser local storage - creating the function
   const storeToken = token => {
     localStorage.setItem('authToken', token);

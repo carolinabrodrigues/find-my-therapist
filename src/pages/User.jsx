@@ -1,7 +1,12 @@
 import React from 'react';
+import NavbarApp from '../components/NavbarApp';
 
 function User() {
-  return <div>User</div>;
+  return (
+    <div>
+      <NavbarApp />
+    </div>
+  );
 }
 
 export default User;

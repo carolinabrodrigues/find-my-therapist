@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo black.png';
+import { useContext } from 'react';
+import { AuthContext } from '../context/auth.context';
 
 function Navbar() {
+  const { isLoggedIn, logoutUser } = useContext(AuthContext);
+
   return (
     <nav>
       <Link to='/'>
@@ -20,6 +24,7 @@ function Navbar() {
       <Link to='/user'>
         <button>My Account</button>
       </Link>
+      <button onClick={logoutUser}>Logout</button>
     </nav>
   );
 }

@@ -4,23 +4,56 @@ import Home from './pages/Home';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import User from './pages/User';
-import Profile from './pages/Profile';
+import MatchedProfiles from './pages/MatchedProfiles';
 import Questions from './pages/Questions';
-import Age from './components/questions/Age';
+import IsAnon from './components/auth/IsAnon';
+import IsPrivate from './components/auth/IsPrivate';
 
 function App() {
   return (
     <div>
       <Routes>
         <Route path='/' element={<Home />} />
-        {/* Need to be wrapped by IsAnon */}
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/login' element={<Login />} />
-        {/* Need to be wrapped by IsPrivate */}
-        <Route path='/questions' element={<Questions />} />
-        <Route path='/user/:id' element={<User />} />
-        <Route path='/profile/:id' element={<Profile />} />
-        <Route path='/age' element={<Age />} />
+        <Route
+          path='/signup'
+          element={
+            <IsAnon>
+              <Signup />
+            </IsAnon>
+          }
+        />
+        <Route
+          path='/login'
+          element={
+            <IsAnon>
+              <Login />
+            </IsAnon>
+          }
+        />
+        <Route
+          path='/questions'
+          element={
+            <IsPrivate>
+              <Questions />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path='/user/:id'
+          element={
+            <IsPrivate>
+              <User />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path='/matchedprofiles'
+          element={
+            <IsPrivate>
+              <MatchedProfiles />
+            </IsPrivate>
+          }
+        />
       </Routes>
     </div>
   );

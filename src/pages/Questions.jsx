@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { ProfileContext } from '../context/profile.context';
-import { AuthContext } from '../context/auth.context';
 import Age from '../components/questions/Age';
 import Gender from '../components/questions/Gender';
 import Location from '../components/questions/Location';
@@ -13,9 +12,7 @@ import CalendarLink from '../components/questions/CalendarLink';
 import Description from '../components/questions/Description';
 
 function Questions() {
-  const { page, setPage } = useContext(ProfileContext);
-
-  //const { user } = useContext(AuthContext);
+  const { page } = useContext(ProfileContext);
 
   const showQuestions = () => {
     if (page === 1) {

@@ -46,6 +46,11 @@ export const getAllMatches = () => {
   return axios.get(`${baseURL}/matches`);
 };
 
+// GET Matches per User
+export const getAllUserMatches = userId => {
+  return axios.get(`${baseURL}/matches/${userId}`);
+};
+
 // GET one Match by ID
 export const getMatch = id => {
   return axios.get(`${baseURL}/matches/${id}`);

@@ -12,9 +12,14 @@ function OfficeAddress() {
     console.log('profile inside handle next', profile);
 
     // if user picked Online - go to page 6
-    setPage(6);
+    if (profile.therapySetup.find(setup => setup === 'Online')) {
+      setPage(6);
+    }
 
     // if user did not pick Online - go to page 7
+    if (!profile.therapySetup.find(setup => setup === 'Online')) {
+      setPage(7);
+    }
   };
 
   return (

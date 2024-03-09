@@ -10,6 +10,8 @@ function TherapySetup() {
   const { profile, setProfile, setPage } = useContext(ProfileContext);
   const { user } = useContext(AuthContext);
 
+  console.log('user', user);
+
   const handleOnline = () => {
     setCheckedOnline(!checkedOnline);
     if (!checkedOnline) {
