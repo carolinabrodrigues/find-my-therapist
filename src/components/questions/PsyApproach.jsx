@@ -32,11 +32,10 @@ function PsyApproach() {
 
   const handleNext = () => {
     setProfile({ ...profile, psyApproach });
-    console.log('profile inside handle next', profile);
 
-    // if user is therapist - go to page 8
+    // if user is therapist - go to page 7
     if (user.isTherapist) {
-      setPage(8);
+      setPage(7);
     } else {
       // if user is client - go to page 9
       setPage(9);

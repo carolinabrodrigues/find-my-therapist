@@ -9,9 +9,10 @@ function Price() {
   const { user } = useContext(AuthContext);
 
   const handleNext = () => {
-    setProfile({ ...profile, price: parseInt(price) });
-    console.log('profile inside handle next', profile); // -> doesn't include the price due to async nature of react states
-    //handleSubmit();
+    // setProfile({ ...profile, user: user._id, price: parseInt(price) });
+    const newProfile = { ...profile, user: user._id, price: parseInt(price) };
+    console.log('new profile inside handle next', newProfile);
+    handleSubmit(newProfile);
   };
 
   return (

@@ -10,9 +10,11 @@ import Price from '../components/questions/Price';
 import OfficeAddress from '../components/questions/OfficeAddress';
 import CalendarLink from '../components/questions/CalendarLink';
 import Description from '../components/questions/Description';
+import Confirmation from '../components/questions/Confirmation';
 
 function Questions() {
   const { page } = useContext(ProfileContext);
+  console.log('page', page);
 
   const showQuestions = () => {
     if (page === 1) {
@@ -30,20 +32,24 @@ function Questions() {
     if (page === 5) {
       return <OfficeAddress />;
     }
+
     if (page === 6) {
-      return <CalendarLink />;
-    }
-    if (page === 7) {
       return <PsyApproach />;
     }
-    if (page === 8) {
+    if (page === 7) {
       return <Description />;
+    }
+    if (page === 8) {
+      return <CalendarLink />;
     }
     if (page === 9) {
       return <PriceImportant />;
     }
     if (page === 10) {
       return <Price />;
+    }
+    if (page === 11) {
+      return <Confirmation />;
     }
   };
 

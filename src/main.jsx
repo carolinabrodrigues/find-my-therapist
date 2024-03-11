@@ -11,9 +11,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
       <AuthProviderWrapper>
-        <MatchesProviderWrapper>
-          <App />
-        </MatchesProviderWrapper>
+        <ProfileProviderWrapper>
+          <MatchesProviderWrapper>
+            <App />
+          </MatchesProviderWrapper>
+        </ProfileProviderWrapper>
       </AuthProviderWrapper>
     </Router>
   </React.StrictMode>

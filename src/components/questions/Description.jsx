@@ -8,12 +8,8 @@ function Description() {
 
   const handleNext = () => {
     setProfile({ ...profile, description });
-    console.log('profile inside handle next', profile);
 
-    // for testing
-    setPage(9);
-
-    //setPage(10);
+    setPage(8);
   };
 
   return (

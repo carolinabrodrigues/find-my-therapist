@@ -1,15 +1,20 @@
 import { useState } from 'react';
 import { useContext } from 'react';
 import { ProfileContext } from '../../context/profile.context';
+import { AuthContext } from '../../context/auth.context';
 
 function PriceImportant() {
   const [priceImportant, setPriceImportant] = useState('');
-  const { profile, setProfile, setPage } = useContext(ProfileContext);
+  const { user } = useContext(AuthContext);
+  const { profile, setProfile, setPage, handleSubmit } =
+    useContext(ProfileContext);
 
   const handleNext = () => {
     if (priceImportant === 'no') {
-      setProfile({ ...profile, price: 0 }); // Set price to 0 if not important
-      console.log('profile inside handle next', profile);
+      setProfile({ ...profile, price: 0, user: user._id }); // Set price to 0 if not important
+      const newProfile = { ...profile, user: user._id, price: 0 };
+      console.log('new profile inside handle next', newProfile);
+      handleSubmit(newProfile);
     } else {
       setPage(10); // Proceed to next question if price is important
     }

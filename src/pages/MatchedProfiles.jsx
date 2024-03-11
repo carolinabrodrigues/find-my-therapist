@@ -39,7 +39,6 @@ function MatchedProfiles() {
 
   return (
     <div>
-      <h3>Here</h3>
       <NavbarApp />
       {/*       {user && showProfiles()}
        */}

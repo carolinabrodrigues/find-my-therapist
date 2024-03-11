@@ -10,8 +10,6 @@ function TherapySetup() {
   const { profile, setProfile, setPage } = useContext(ProfileContext);
   const { user } = useContext(AuthContext);
 
-  console.log('user', user);
-
   const handleOnline = () => {
     setCheckedOnline(!checkedOnline);
     if (!checkedOnline) {
@@ -21,7 +19,6 @@ function TherapySetup() {
         prevSetup.filter(setup => setup !== 'Online')
       );
     }
-    console.log('inside handle online', therapySetup);
   };
 
   const handleInPerson = () => {
@@ -33,30 +30,21 @@ function TherapySetup() {
         prevSetup.filter(setup => setup !== 'In-person')
       );
     }
-    console.log('inside handle in person', therapySetup);
   };
 
   const handleNext = () => {
     setProfile({ ...profile, therapySetup });
 
-    console.log('profile inside handle next', profile);
-
     if (user.isTherapist) {
       // if user is therapist & picked in-person - go to page 5
       if (therapySetup.includes('In-person')) {
         setPage(5);
-      }
-
-      // if user is therapist & picked only online - go to page 6
-      if (
-        therapySetup.includes('Online') &&
-        !therapySetup.find(setup => setup === 'In-person')
-      ) {
+      } else {
         setPage(6);
       }
     } else {
       // if user is client - go to page 7
-      setPage(7);
+      setPage(6);
     }
   };
 

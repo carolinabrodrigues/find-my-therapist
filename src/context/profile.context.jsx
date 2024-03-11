@@ -11,6 +11,7 @@ const ProfileProviderWrapper = props => {
   const handleSubmit = async reqBody => {
     try {
       await addProfile(reqBody);
+      console.log('created profile');
     } catch (error) {
       console.log(error);
     }

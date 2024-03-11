@@ -9,8 +9,6 @@ function Age() {
   const handleNext = () => {
     setProfile({ ...profile, age });
     setPage(2);
-
-    console.log('profile inside handle next', profile);
   };
 
   return (
