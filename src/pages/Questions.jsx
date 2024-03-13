@@ -11,6 +11,7 @@ import OfficeAddress from '../components/questions/OfficeAddress';
 import CalendarLink from '../components/questions/CalendarLink';
 import Description from '../components/questions/Description';
 import Confirmation from '../components/questions/Confirmation';
+import NavbarApp from '../components/NavbarApp';
 
 function Questions() {
   const { page } = useContext(ProfileContext);
@@ -55,6 +56,7 @@ function Questions() {
 
   return (
     <div>
+      <NavbarApp />
       <h1>Questions</h1>
       {showQuestions()}
     </div>

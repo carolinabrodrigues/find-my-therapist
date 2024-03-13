@@ -9,7 +9,6 @@ function Gender() {
   const handleNext = () => {
     setProfile({ ...profile, gender });
     setPage(3);
-    console.log('profile inside handle next', profile);
   };
 
   return (

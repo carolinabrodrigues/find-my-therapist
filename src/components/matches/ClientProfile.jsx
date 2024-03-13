@@ -1,25 +1,36 @@
-import { MatchesContext } from '../context/matches.context';
-import { AuthContext } from '../context/auth.context';
+import { MatchesContext } from '../../context/matches.context';
+import { AuthContext } from '../../context/auth.context';
 import { useContext, useEffect } from 'react';
-import { updateMatch } from '../api/matches.api';
+import { deleteMatch, updateMatch } from '../../api/matches.api';
 
 function ClientProfile({ matchId }) {
   const { user } = useContext(AuthContext);
-  const { matches, match, getOneMatchedProfile, matchedProfile } =
+  const { matches, getOneMatchedProfile, matchedProfile } =
     useContext(MatchesContext);
 
-  useEffect(() => {
-    getOneMatchedProfile(user._id, matchId);
-  }, [matches]);
+  console.log('user id', user._id);
+  console.log('matchId', matchId);
 
-  console.log('matched profile:', matchedProfile);
+  useEffect(() => {
+    if (matchId && user._id) {
+      // get data from the match linked to this profile
+      // getMatchById(matchId);
+      // get the profile from the therapist in this match
+      getOneMatchedProfile(user._id, matchId);
+    }
+  }, [matchId, user._id]);
+
+  console.log('matched profile in client profile:', matchedProfile);
 
   const handleAccept = async () => {
+    const match = matches.find(match => match._id === matchId);
     try {
-      const updatedMatch = { ...match, matchStatus: 'Accepted by Therapist' };
-      console.log('match updated?', updatedMatch);
+      if (match) {
+        const updatedMatch = { ...match, matchStatus: 'Accepted by Therapist' };
+        console.log('match updated?', updatedMatch);
 
-      updateMatch(updatedMatch);
+        await updateMatch(updatedMatch);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -27,10 +38,8 @@ function ClientProfile({ matchId }) {
 
   const handleDismiss = async () => {
     try {
-      const updatedMatch = { ...match, matchStatus: 'Rejected by Therapist' };
-      console.log('match updated?', updatedMatch);
-
-      updateMatch(updatedMatch);
+      await deleteMatch(matchId);
+      // TO DO: call getUserMatches to update matches in frontend
     } catch (error) {
       console.log(error);
     }

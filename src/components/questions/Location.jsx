@@ -9,7 +9,6 @@ function Location() {
   const handleNext = () => {
     setProfile({ ...profile, location });
     setPage(4);
-    console.log('profile inside handle next', profile);
   };
 
   return (

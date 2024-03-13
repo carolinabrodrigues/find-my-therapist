@@ -9,7 +9,6 @@ function OfficeAddress() {
 
   const handleNext = () => {
     setProfile({ ...profile, addressStreet, addressCode });
-    console.log('profile inside handle next', profile);
 
     // if user picked Online - go to page 6
     if (profile.therapySetup.find(setup => setup === 'Online')) {

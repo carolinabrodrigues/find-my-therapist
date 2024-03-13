@@ -34,7 +34,7 @@ export const getMatchedProfile = (userId, matchId) => {
   });
 };
 
-// GET one Profile by ID
+// GET one Profile by Profile ID
 export const getProfile = id => {
   return axios.get(`${baseURL}/profiles/${id}`);
 };
@@ -77,4 +77,9 @@ export const updateMatch = updatedMatch => {
 // DELETE one Match by ID
 export const deleteMatch = id => {
   return axios.delete(`${baseURL}/matches/${id}`);
+};
+
+// GET User by ID
+export const getUser = id => {
+  return axios.get(`${baseURL}/users/${id}`);
 };

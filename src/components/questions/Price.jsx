@@ -5,7 +5,8 @@ import { AuthContext } from '../../context/auth.context';
 
 function Price() {
   const [price, setPrice] = useState(0);
-  const { profile, setProfile, handleSubmit } = useContext(ProfileContext);
+  const { profile, setProfile, handleSubmit, setPage } =
+    useContext(ProfileContext);
   const { user } = useContext(AuthContext);
 
   const handleNext = () => {
@@ -13,6 +14,7 @@ function Price() {
     const newProfile = { ...profile, user: user._id, price: parseInt(price) };
     console.log('new profile inside handle next', newProfile);
     handleSubmit(newProfile);
+    setPage(11);
   };
 
   return (

@@ -8,7 +8,6 @@ function Description() {
 
   const handleNext = () => {
     setProfile({ ...profile, description });
-
     setPage(8);
   };
 

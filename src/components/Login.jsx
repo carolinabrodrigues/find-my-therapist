@@ -26,7 +26,7 @@ function Login() {
       storeToken(response.data.authToken);
       authenticateUser();
 
-      navigate('/');
+      navigate('/user');
     } catch (error) {
       console.log('Error login', error);
       // this chain gets the error message we defined in the backend

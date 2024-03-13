@@ -8,7 +8,6 @@ function CalendarLink() {
 
   const handleNext = () => {
     setProfile({ ...profile, calendarLink });
-
     setPage(10);
   };
 

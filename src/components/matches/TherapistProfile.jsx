@@ -1,15 +1,33 @@
-import { MatchesContext } from '../context/matches.context';
-import { AuthContext } from '../context/auth.context';
-import { useContext, useEffect } from 'react';
-import { updateMatch, deleteMatch } from '../api/matches.api';
+/* eslint-disable react/prop-types */
+import { MatchesContext } from '../../context/matches.context';
+import { AuthContext } from '../../context/auth.context';
+import { useContext, useEffect, useState } from 'react';
+import {
+  updateMatch,
+  deleteMatch,
+  getMatchedProfile,
+} from '../../api/matches.api';
 
-function TherapistProfile({ matchId }) {
+function TherapistProfile({ key, matchId, setCurrentPage }) {
   const { user } = useContext(AuthContext);
-  const { matches, getOneMatchedProfile, matchedProfile } =
-    useContext(MatchesContext);
+  const { matches } = useContext(MatchesContext);
+
+  const [matchedProfile, setMatchedProfile] = useState(null);
+
+  // setCurrentPage(key + 1);
 
   console.log('user id', user._id);
   console.log('matchId', matchId);
+
+  const getOneMatchedProfile = async (userId, matchId) => {
+    try {
+      const response = await getMatchedProfile(userId, matchId);
+      setMatchedProfile(response.data);
+      console.log('response', response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     if (matchId && user._id) {
@@ -49,7 +67,7 @@ function TherapistProfile({ matchId }) {
 
   return (
     <>
-      {matchedProfile && (
+      {user && matchedProfile && (
         <>
           <div className='ProfileHeader'>
             <h2>
@@ -78,7 +96,7 @@ function TherapistProfile({ matchId }) {
             <p>{matchedProfile.price}€</p>
             <p>Office Address</p>
             <p>
-              {matchedProfile.addressStreet} {matchedProfile.addressStreet}{' '}
+              {matchedProfile.addressStreet} {matchedProfile.addressCode}{' '}
               {matchedProfile.location}, Portugal
             </p>
           </div>

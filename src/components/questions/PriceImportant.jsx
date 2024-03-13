@@ -15,6 +15,7 @@ function PriceImportant() {
       const newProfile = { ...profile, user: user._id, price: 0 };
       console.log('new profile inside handle next', newProfile);
       handleSubmit(newProfile);
+      setPage(11);
     } else {
       setPage(10); // Proceed to next question if price is important
     }
