@@ -10,7 +10,7 @@ import {
 
 function TherapistProfile({ key, matchId, setCurrentPage }) {
   const { user } = useContext(AuthContext);
-  const { matches } = useContext(MatchesContext);
+  const { matches, showMatches } = useContext(MatchesContext);
 
   const [matchedProfile, setMatchedProfile] = useState(null);
 

@@ -5,6 +5,7 @@ const MatchesContext = createContext();
 
 const MatchesProviderWrapper = props => {
   const [matches, setMatches] = useState([]);
+  const [showMatches, setShowMatches] = useState([]);
   const [matchPage, setMatchPage] = useState(0);
 
   return (
@@ -12,8 +13,8 @@ const MatchesProviderWrapper = props => {
       value={{
         matches,
         setMatches,
-        matchPage,
-        setMatchPage,
+        showMatches,
+        setShowMatches,
       }}
     >
       {props.children}

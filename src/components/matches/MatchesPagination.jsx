@@ -1,7 +1,11 @@
-import React from 'react';
+import {
+  Pagination,
+  PaginationItem,
+  PaginationCursor,
+} from '@nextui-org/pagination';
 
 function MatchesPagination({ pageCount, handlePageChange, currentPage }) {
-  // Function to calculate page numbers
+  /*   // Function to calculate page numbers
   const pageNumbers = [];
   for (let i = 1; i <= pageCount; i++) {
     pageNumbers.push(i);
@@ -11,12 +15,12 @@ function MatchesPagination({ pageCount, handlePageChange, currentPage }) {
   const handlePageClick = pageNumber => {
     handlePageChange(pageNumber);
   };
-  // Render the pagination controls
+  // Render the pagination controls */
 
   return (
     <div>
-      <button onClick={() => handlePageClick(currentPage - 1)}>Previous</button>
-      <button onClick={() => handlePageClick(currentPage + 1)}>Next</button>
+      {/*       <button onClick={() => handlePageClick(currentPage - 1)}>Previous</button>
+      <button onClick={() => handlePageClick(currentPage + 1)}>Next</button> */}
     </div>
   );
 }

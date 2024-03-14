@@ -41,7 +41,7 @@ function User() {
   useEffect(() => {
     getUserInfo(user._id).then(response => {
       getUserProfile(response.profile).then(response => {
-        if (response) {
+        if (!response) {
           navigate('/questions');
         }
       });

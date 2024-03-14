@@ -15,8 +15,10 @@ function Navbar() {
         <div>
           {/* when NOT logged in */}
           {!isLoggedIn && (
-            <div>
-              <Link to='/login'>Have an account?</Link>
+            <div className='flex flex-row'>
+              <div className='flex flex-col justify-center px-8'>
+                <Link to='/login'>Have an account?</Link>
+              </div>
               <Link to='/signup'>
                 <button>Register</button>
               </Link>
