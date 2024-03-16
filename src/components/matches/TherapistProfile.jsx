@@ -8,13 +8,13 @@ import {
   getMatchedProfile,
 } from '../../api/matches.api';
 
-function TherapistProfile({ key, matchId, setCurrentPage }) {
+function TherapistProfile({ matchId }) {
   const { user } = useContext(AuthContext);
-  const { matches, showMatches } = useContext(MatchesContext);
-
-  const [matchedProfile, setMatchedProfile] = useState(null);
+  const { matches } = useContext(MatchesContext);
 
   // setCurrentPage(key + 1);
+
+  const [matchedProfile, setMatchedProfile] = useState(null);
 
   console.log('user id', user._id);
   console.log('matchId', matchId);
@@ -31,21 +31,20 @@ function TherapistProfile({ key, matchId, setCurrentPage }) {
 
   useEffect(() => {
     if (matchId && user._id) {
-      // get data from the match linked to this profile
-      // getMatchById(matchId);
       // get the profile from the therapist in this match
       getOneMatchedProfile(user._id, matchId);
     }
-  }, [matchId, user._id]);
-
-  console.log('matched profile in therapist profile:', matchedProfile);
+  }, []);
 
   const handleLike = async () => {
     try {
       const match = matches.find(match => match._id === matchId);
 
       if (match) {
-        const updatedMatch = { ...match, matchStatus: 'Accepted by Client' };
+        const updatedMatch = {
+          ...match,
+          matchStatus: 'Accepted by Client',
+        };
         console.log('match updated?', updatedMatch);
 
         await updateMatch(updatedMatch);
@@ -60,6 +59,7 @@ function TherapistProfile({ key, matchId, setCurrentPage }) {
       await deleteMatch(matchId);
       console.log('match deleted?');
       // TO DO: call getUserMatches to update matches in frontend
+      // navigate to next match OR user page
     } catch (error) {
       console.log(error);
     }

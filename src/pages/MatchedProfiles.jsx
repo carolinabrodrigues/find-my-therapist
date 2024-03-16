@@ -4,7 +4,6 @@ import ClientProfile from '../components/matches/ClientProfile';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/auth.context';
 import { MatchesContext } from '../context/matches.context';
-import { getAllUserMatches } from '../api/matches.api';
 // import MatchesPagination from '../components/matches/MatchesPagination';
 /* import {
   Pagination,
@@ -21,8 +20,7 @@ import { ChevronIcon } from '../components/ChevronIcon';
 
 function MatchedProfiles() {
   const { user } = useContext(AuthContext);
-  const { matches, setMatches, showMatches, setShowMatches } =
-    useContext(MatchesContext);
+  const { matches, setMatches, getUserMatches } = useContext(MatchesContext);
 
   // PAGINATION
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,22 +32,11 @@ function MatchedProfiles() {
     boundaries: 10,
   });
 
-  const getUserMatches = async userId => {
-    try {
-      const response = await getAllUserMatches(userId);
-      setMatches(response.data);
-      setShowMatches(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     getUserMatches(user._id);
   }, []);
 
-  const showProfiles = () => {
-    console.log('show matches', showMatches);
+  const showMatchedProfiles = () => {
     if (matches.length <= 0) {
       return (
         <p>No profiles match your criteria right now. Check your preferences</p>
@@ -79,7 +66,7 @@ function MatchedProfiles() {
   return (
     <div>
       <NavbarApp />
-      {user && matches.length > 0 && showProfiles()}
+      {user && matches.length > 0 && showMatchedProfiles()}
       {/* {user && matches.length > 0 && (
         <TherapistProfile matchId={matches[0]._id} />
       )} */}
@@ -162,7 +149,7 @@ function MatchedProfiles() {
                     ${activePage === page && 'bg-secondary'}`}
                   onClick={() => {
                     setPage(page);
-                    setShowMatches(matches[page - 1]);
+                    setMatches(matches[page - 1]);
                   }}
                 />
               </li>

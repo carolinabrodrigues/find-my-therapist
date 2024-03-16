@@ -66,7 +66,7 @@ export const getMatch = id => {
 
 // POST Matches by Client ID
 export const addMatches = clientId => {
-  return axios.post(`${baseURL}/matches`, clientId);
+  return axios.post(`${baseURL}/matches`, { clientId });
 };
 
 // PUT one Match
