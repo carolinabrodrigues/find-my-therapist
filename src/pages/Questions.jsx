@@ -15,7 +15,6 @@ import NavbarApp from '../components/NavbarApp';
 
 function Questions() {
   const { page } = useContext(ProfileContext);
-  console.log('page', page);
 
   const showQuestions = () => {
     if (page === 1) {

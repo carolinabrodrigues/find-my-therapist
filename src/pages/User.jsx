@@ -208,8 +208,7 @@ function User() {
                         </h3>
                         <p>{profile.location}</p>
                         <button>View</button>
-                        {/* Book button links to calendar link of therapist */}
-                        <button>Book</button>
+                        <Link to={profile.calendarLink}>Book</Link>
                       </div>
                     );
                   })}
@@ -221,7 +220,7 @@ function User() {
               ) : (
                 <p>You have matches to review</p>
               )}
-              <Link to='/matchedprofiles'>Check new matches</Link>
+              <button onClick={handleMatchesButton}>Check new matches</button>
             </>
           )}
 
@@ -243,9 +242,6 @@ function User() {
         Welcome back, {user.firstName} {user.lastName}
       </h1>
       {profile && matches && showMatchesCards(user)}
-      <br />
-      <br />
-      <Link to='/matchedprofiles'>Matched Profiles</Link>
     </div>
   );
 }
