@@ -14,7 +14,7 @@ function Home() {
         <div className='mx-auto max-w-7xl px-6 py-32 sm:py-40 lg:px-8'>
           <div className='mx-auto max-w-2xl lg:mx-0 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:gap-y-6 xl:grid-cols-1 xl:grid-rows-1 xl:gap-x-8'>
             <h1 className='max-w-2xl text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:col-span-2 xl:col-auto'>
-              No more trial and error. Just therapy success
+              NO MORE TRIAL AND ERROR. JUST THERAPY SUCCESS{' '}
             </h1>
             <div className='mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1'>
               <p className='text-lg leading-8 text-gray-600'>
@@ -26,7 +26,7 @@ function Home() {
               <div className='mt-10 flex items-center gap-x-6'>
                 <Link
                   to='/signup'
-                  className='rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                  className='rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400'
                 >
                   Get started
                 </Link>

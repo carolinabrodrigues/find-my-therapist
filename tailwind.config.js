@@ -8,8 +8,17 @@ export default {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    fontFamily: {
+      sans: ['Lexend', 'sans-serif'],
+      serif: ['Zilla Slab', 'serif'],
+    },
+    extend: {
+      colors: {
+        purple: '#3e5eff',
+      },
+    },
   },
+
   darkMode: 'class',
   plugins: [],
 };
