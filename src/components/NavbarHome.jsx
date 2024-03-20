@@ -40,7 +40,7 @@ function Navbar() {
                 to='/user'
                 className='rounded-md bg-indigo-600 px-3.5 py-2.5 text-white text-sm font-semibold leading-2'
               >
-                My Account <span aria-hidden='true'>&rarr;</span>
+                My Account
               </Link>
             </div>
           </nav>

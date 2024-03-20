@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { signup } from '../api/auth.api';
 import { Link, useNavigate } from 'react-router-dom';
+import { Tabs, Tab, Card, CardBody, Button, Input } from '@nextui-org/react';
 
 function Signup() {
   const [email, setEmail] = useState('');
@@ -36,62 +37,130 @@ function Signup() {
     }
   };
 
+  console.log('is therapist', isTherapist);
+
   return (
     <div>
       <h1>Signup</h1>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor='email'> Email:</label>
-        <input
-          type='email'
-          name='email'
-          id='email'
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <label htmlFor='password'> Password:</label>
-        <input
-          type='password'
-          name='password'
-          id='password'
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-        <label htmlFor='name'> First Name:</label>
-        <input
-          type='text'
-          name='firstName'
-          id='firstName'
-          value={firstName}
-          onChange={e => setFirstName(e.target.value)}
-        />
-        <label htmlFor='name'> Last Name:</label>
-        <input
-          type='text'
-          name='lastName'
-          id='lastName'
-          value={lastName}
-          onChange={e => setLastName(e.target.value)}
-        />
-
-        <label>
-          <input
-            type='checkbox'
-            checked={isTherapist}
-            onChange={() => setIsTherapist(!isTherapist)}
-          />
-          I'm a therapist
-        </label>
-
-        <button type='submit'>Sign Up</button>
-      </form>
-
-      {error && <p>{error}</p>}
-
-      <p>Already have an account?</p>
-      <Link to='/login'>
-        <p>Login</p>
-      </Link>
+      <div className='flex w-full flex-col'>
+        <Tabs
+          aria-label='Options'
+          selectedKey={isTherapist ? 'therapist' : 'client'}
+          onSelectionChange={newKey => setIsTherapist(newKey === 'therapist')}
+        >
+          <Tab key='client' title="I'm a Client">
+            <Card>
+              <CardBody>
+                <form
+                  className='flex flex-col gap-4 h-[300px]'
+                  onSubmit={handleSubmit}
+                >
+                  <Input
+                    isRequired
+                    label='First Name'
+                    placeholder='Enter your first name'
+                    type='firstname'
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
+                  />
+                  <Input
+                    isRequired
+                    label='Last Name'
+                    placeholder='Enter your last name'
+                    type='lastname'
+                    value={lastName}
+                    onChange={e => setLastName(e.target.value)}
+                  />
+                  <Input
+                    isRequired
+                    label='Email'
+                    placeholder='Enter your email'
+                    type='email'
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                  />
+                  <Input
+                    isRequired
+                    label='Password'
+                    placeholder='Enter your password'
+                    type='password'
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                  />
+                  <p className='text-center text-small'>
+                    Already have an account?{' '}
+                    <Link to='/login' size='sm'>
+                      Login
+                    </Link>
+                  </p>
+                  <div className='flex gap-2 justify-end'>
+                    <Button fullWidth color='primary' type='submit'>
+                      Sign up
+                    </Button>
+                  </div>
+                </form>
+                {error && <p>{error}</p>}
+              </CardBody>
+            </Card>
+          </Tab>
+          <Tab key='therapist' title="I'm a Therapist">
+            <Card>
+              <CardBody>
+                <form
+                  className='flex flex-col gap-4 h-[300px]'
+                  onSubmit={handleSubmit}
+                >
+                  <Input
+                    isRequired
+                    label='First Name'
+                    placeholder='Enter your first name'
+                    type='firstname'
+                    value={firstName}
+                    onChange={e => setFirstName(e.target.value)}
+                  />
+                  <Input
+                    isRequired
+                    label='Last Name'
+                    placeholder='Enter your last name'
+                    type='lastname'
+                    value={lastName}
+                    onChange={e => setLastName(e.target.value)}
+                  />
+                  <Input
+                    isRequired
+                    label='Email'
+                    placeholder='Enter your email'
+                    type='email'
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                  />
+                  <Input
+                    isRequired
+                    label='Password'
+                    placeholder='Enter your password'
+                    type='password'
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                  />
+                  <p className='text-center text-small'>
+                    Already have an account?{' '}
+                    <Link to='/login' size='sm'>
+                      Login
+                    </Link>
+                  </p>
+                  <div className='flex gap-2 justify-end'>
+                    <Button fullWidth color='primary' type='submit'>
+                      Sign up
+                    </Button>
+                  </div>
+                </form>
+                {error && <p>{error}</p>}
+              </CardBody>
+            </Card>
+          </Tab>
+        </Tabs>
+      </div>
     </div>
   );
 }
