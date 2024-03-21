@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react';
-import { signup } from '../api/auth.api';
+import { signup } from '../../api/auth.api';
 import { Link, useNavigate } from 'react-router-dom';
 
 function Signup() {

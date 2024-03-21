@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { signup } from '../api/auth.api';
 import { Link, useNavigate } from 'react-router-dom';
-import { Tabs, Tab, Card, CardBody, Button, Input } from '@nextui-org/react';
+import { Tabs, Tab, Card, CardBody } from '@nextui-org/react';
 
 function Signup() {
   const [email, setEmail] = useState('');
