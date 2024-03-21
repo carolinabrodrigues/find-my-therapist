@@ -94,7 +94,7 @@ function Login() {
                   Login
                 </button>
               </form>
-              {error && <p className='py-1'>{error}</p>}
+              {error && <p className='py-3'>{error}</p>}
             </div>
           </div>
         </div>

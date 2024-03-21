@@ -5,7 +5,7 @@ import hero from '../assets/happy-therapy.jpg';
 
 function Home() {
   return (
-    <div className='bg-white'>
+    <div>
       <NavbarHome />
       <div className='relative isolate overflow-hidden pt-14'>
         {/* <div

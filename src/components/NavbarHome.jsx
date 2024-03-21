@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-function Navbar() {
+function NavbarHome() {
   const { isLoggedIn } = useContext(AuthContext);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -19,7 +19,7 @@ function Navbar() {
             aria-label='Global'
           >
             <div className='flex lg:flex-1'>
-              <a href='#' className='-m-1.5 p-1.5'>
+              <a href='/' className='-m-1.5 p-1.5'>
                 <span className='sr-only'>Find My Therapist</span>
                 <img className='h-8 w-auto' src={logo} alt='' />
               </a>
@@ -178,4 +178,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarHome;
