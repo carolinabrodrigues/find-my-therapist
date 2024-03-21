@@ -8,6 +8,7 @@ import MatchedProfiles from './pages/MatchedProfiles';
 import Questions from './pages/Questions';
 import IsAnon from './components/auth/IsAnon';
 import IsPrivate from './components/auth/IsPrivate';
+import Error from './pages/Error';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
             </IsPrivate>
           }
         />
+        <Route path='*' element={<Error />} />
       </Routes>
     </div>
   );
