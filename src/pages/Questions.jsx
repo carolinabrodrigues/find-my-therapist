@@ -56,7 +56,6 @@ function Questions() {
   return (
     <div>
       <NavbarApp />
-      <h1>Questions</h1>
       {showQuestions()}
     </div>
   );
