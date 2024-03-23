@@ -156,15 +156,20 @@ function User() {
               <div className='w-full border-t border-gray-300' />
             </div>
           </div>
-          <div>
+          <div className='flex justify-between align-center items-baseline'>
             <p className='text-xl my-16'>
-              You have {showPendingMatches.length} matches waiting for your
-              review
+              You have {showPendingMatches.length}{' '}
+              {showPendingMatches.length === 1 ? (
+                <span>match</span>
+              ) : (
+                <span>matches</span>
+              )}{' '}
+              waiting for your review
             </p>
             {showPendingMatches.length > 0 && (
               <button
                 type='button'
-                className='rounded-md bg-white px-3.5 py-5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
+                className='rounded-md bg-white px-3.5 py-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
               >
                 <Link to='/matchedprofiles'>Review pending matches</Link>
               </button>
@@ -173,22 +178,46 @@ function User() {
 
           {acceptedProfiles && (
             <>
-              <h2>Accepted Matches</h2>
-              {acceptedProfiles.map(profile => {
-                return (
-                  <div key={profile._id}>
-                    <h3>
-                      {profile.user.firstName} {profile.user.lastName}
-                    </h3>
-                    <p>{profile.location}</p>
-                    <button>View</button>
-                  </div>
-                );
-              })}
+              <h2 className='text-2xl text-semibold mt-8 mb-4'>
+                Accepted Matches
+              </h2>
+              <div className='relative'>
+                <div
+                  className='absolute inset-0 flex items-center'
+                  aria-hidden='true'
+                >
+                  <div className='w-full border-t border-gray-300' />
+                </div>
+              </div>
+
+              <div className='grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-12 mt-10'>
+                {acceptedProfiles.map(profile => {
+                  return (
+                    <div
+                      key={profile._id}
+                      className='overflow-hidden rounded-lg bg-white shadow'
+                    >
+                      <div className='bg-white px-4 py-3 sm:p-4 flex flex-col justify-center gap-2'>
+                        <img src={placeholder} className='rounded-lg' />
+                        <h3 className='text-bold'>
+                          {profile.user.firstName} {profile.user.lastName}
+                        </h3>
+                        <p className='mb-3'>{profile.location}</p>
+                        <button
+                          onClick={() => handleView(profile._id)}
+                          className='rounded-full w-full bg-indigo-600 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                        >
+                          View
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </>
           )}
 
-          <div className='my-10'>
+          <div className='my-24'>
             <p className='mb-5'>Not enough matches?</p>
             <button
               type='button'
@@ -203,7 +232,7 @@ function User() {
       // IF CLIENT
       return (
         <>
-          <h2 className='text-2xl text-bold mt-8 mb-4'>Your Matches</h2>
+          <h3 className='text-2xl text-bold mt-8 mb-4'>Your Matches</h3>
           <div className='relative'>
             <div
               className='absolute inset-0 flex items-center'
@@ -216,10 +245,10 @@ function User() {
             <>
               {pendingProfiles && (
                 <>
-                  <h3 className='text-xl text-bold mt-8 mb-4'>
+                  <h3 className='text-xl text-bold mt-10 mb-4'>
                     Waiting for response
                   </h3>
-                  <div className='grid grid-cols-4 md:grid-cols-3 sm:grid-cols-1 gap-12'>
+                  <div className='grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-12'>
                     {pendingProfiles.map(profile => {
                       return (
                         <div
@@ -231,7 +260,7 @@ function User() {
                             <h3 className='text-bold'>
                               {profile.user.firstName} {profile.user.lastName}
                             </h3>
-                            <p>{profile.location}</p>
+                            <p className='mb-3'>{profile.location}</p>
                             <button
                               onClick={() => handleView(profile._id)}
                               className='rounded-full w-full bg-indigo-600 py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
@@ -247,30 +276,55 @@ function User() {
               )}
               {acceptedProfiles && (
                 <>
-                  <h3 className='text-xl text-bold mt-8 mb-4'>
+                  <h3 className='text-xl text-bold mt-10 mb-4'>
                     Accepted matches
                   </h3>
-                  {acceptedProfiles.map(profile => {
-                    return (
-                      <div key={profile._id}>
-                        <h3>
-                          {profile.user.firstName} {profile.user.lastName}
-                        </h3>
-                        <p>{profile.location}</p>
-                        <button>View</button>
-                        <Link to={profile.calendarLink}>Book</Link>
-                      </div>
-                    );
-                  })}
+
+                  <div className='grid grid-cols-4 md:grid-cols-4 sm:grid-cols-1 gap-12'>
+                    {acceptedProfiles.map(profile => {
+                      return (
+                        <div
+                          key={profile._id}
+                          className='overflow-hidden rounded-lg bg-white shadow'
+                        >
+                          <div className='bg-white px-4 py-3 sm:p-4 flex flex-col justify-center gap-2'>
+                            <img src={placeholder} className='rounded-lg' />
+                            <h3 className='text-bold'>
+                              {profile.user.firstName} {profile.user.lastName}
+                            </h3>
+                            <p className='mb-3'>{profile.location}</p>
+                            <div className='flex h-min justify-center gap-1'>
+                              <button
+                                onClick={() => handleView(profile._id)}
+                                className='rounded-full bg-zinc-200 w-full py-1 text-sm font-semibold shadow-sm hover:bg-zinc-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                              >
+                                View
+                              </button>
+                              <button className='rounded-full bg-indigo-600 w-full py-1 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+                                <Link to={profile.calendarLink}>Book</Link>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </>
               )}
 
-              {pendingProfiles || acceptedProfiles ? (
-                <p>Looking for new suggestions?</p>
-              ) : (
-                <p>You have matches to review</p>
-              )}
-              <button onClick={handleMatchesButton}>Check new matches</button>
+              <div className='flex justify-between pt-20 align-center'>
+                {pendingProfiles || acceptedProfiles ? (
+                  <p className='p-2'>Looking for new suggestions?</p>
+                ) : (
+                  <p className='p-2'>You have matches to review</p>
+                )}
+                <button
+                  onClick={handleMatchesButton}
+                  className='rounded-md bg-white px-10 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
+                >
+                  Check new matches ⚡️
+                </button>
+              </div>
             </>
           )}
 
@@ -305,7 +359,7 @@ function User() {
       <NavbarApp />
       <div className='relative isolate overflow-hidden pt-14'>
         <div className='mx-auto max-w-7xl px-6 py-12 sm:py-12 lg:px-8'>
-          <div className='mx-auto max-w-5xl lg:mx-0 '>
+          <div className='mx-auto max-w-6xl lg:mx-0 '>
             <h1 className='text-4xl font-bold my-5'>
               Welcome back, {user.firstName}
             </h1>

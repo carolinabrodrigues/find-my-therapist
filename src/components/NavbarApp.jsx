@@ -38,15 +38,15 @@ function NavbarApp() {
         <div className='hidden lg:flex lg:flex-1 lg:justify-end gap-6'>
           <Link to='/user' className='flex flex-col justify-center'>
             <img className='h-[25px]' src={home} alt='home icon' />
-            <p className='text-xs'>Home</p>
+            <p className='text-xs pt-1'>Home</p>
           </Link>
           <Link to='/profile' className='flex flex-col justify-center'>
             <img className='h-[25px]' src={profile} alt='profile icon' />
-            <p className='text-xs'>Profile</p>
+            <p className='text-xs pt-1'>Profile</p>
           </Link>
           <Link onClick={logoutUser} className='flex flex-col justify-center'>
             <img className='h-[25px]' src={logout} alt='logout icon' />
-            <p className='text-xs'>Logout</p>
+            <p className='text-xs pt-1'>Logout</p>
           </Link>
         </div>
       </nav>

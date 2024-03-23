@@ -44,11 +44,13 @@ function Signup() {
     <div className='flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 '>
       <div className='sm:mx-auto sm:w-full sm:max-w-md'>
         <div className='flex w-full flex-col'>
-          <img
-            className='mx-auto h-10 w-auto'
-            src={logo}
-            alt='Find My Therapist'
-          />
+          <a href='/' className='-m-1.5 p-1.5'>
+            <img
+              className='mx-auto h-10 w-auto'
+              src={logo}
+              alt='Find My Therapist'
+            />
+          </a>
           <h2 className='mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900'>
             Register for Free
           </h2>
