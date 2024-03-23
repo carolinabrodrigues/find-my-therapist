@@ -53,7 +53,7 @@ function PsyApproach() {
           )}
 
           <div className='flex flex-col justify-center'>
-            <p className='text-sm text-gray-500 text-center'>
+            <p className='text-sm text-gray-500 text-center pb-2'>
               Select one or more options.
             </p>
             <div>
@@ -65,7 +65,9 @@ function PsyApproach() {
               >
                 <CustomCheckbox padding='12' value='Cognitive Behavioral'>
                   <div className='text-left w-full'>
-                    <div className='font-semibold'>COGNITIVE BEHAVIORAL</div>
+                    <div className='font-semibold pb-1.5'>
+                      COGNITIVE BEHAVIORAL
+                    </div>
                     <p>
                       Analyzes and modifies thought patterns and behaviors to
                       alleviate psychological distress.
@@ -78,7 +80,7 @@ function PsyApproach() {
                   value='Psychoanalytical'
                 >
                   <div className='text-left w-full'>
-                    <div className='font-semibold'>PSYCHOANALYTICAL</div>
+                    <div className='font-semibold pb-1.5'>PSYCHOANALYTICAL</div>
                     <p>
                       Explores unconscious processes and childhood experiences
                       to understand and treat mental disorders.
@@ -87,7 +89,7 @@ function PsyApproach() {
                 </CustomCheckbox>
                 <CustomCheckbox padding='12' value='Humanistic'>
                   <div className='text-left w-full'>
-                    <div className='font-semibold'>HUMANISTIC</div>
+                    <div className='font-semibold pb-1.5'>HUMANISTIC</div>
                     <p>
                       Focuses on self-actualization and subjective experiences
                       to promote personal growth and well-being.
@@ -96,7 +98,7 @@ function PsyApproach() {
                 </CustomCheckbox>
                 <CustomCheckbox padding='12' value='Systematic'>
                   <div className='text-left w-full'>
-                    <div className='font-semibold'>SYSTEMATIC</div>
+                    <div className='font-semibold pb-1.5'>SYSTEMATIC</div>
                     <p>
                       Studies the interaction between individuals and their
                       social environments to understand behavior.
@@ -105,7 +107,7 @@ function PsyApproach() {
                 </CustomCheckbox>
                 <CustomCheckbox padding='12' value='Constructionist'>
                   <div className='text-left w-full'>
-                    <div className='font-semibold'>CONSTRUCTIONIST</div>
+                    <div className='font-semibold pb-1.5'>CONSTRUCTIONIST</div>
                     <p>
                       Investigates how individuals construct meaning through
                       language and social interactions.

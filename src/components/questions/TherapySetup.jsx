@@ -42,7 +42,7 @@ function TherapySetup() {
           </h3>
 
           <div className='flex flex-col justify-center'>
-            <p className='text-sm text-gray-500 text-center'>
+            <p className='text-sm text-gray-500 text-center pb-2'>
               Select one or more options.
             </p>
             <CheckboxGroup
