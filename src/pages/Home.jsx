@@ -2,16 +2,15 @@ import NavbarHome from '../components/NavbarHome';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 import hero from '../assets/happy-therapy.jpg';
+import { useContext } from 'react';
+import { AuthContext } from '../context/auth.context';
 
 function Home() {
+  const { isLoggedIn } = useContext(AuthContext);
   return (
     <div>
       <NavbarHome />
       <div className='relative isolate overflow-hidden pt-14'>
-        {/* <div
-          className='absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:-mr-80 lg:-mr-96'
-          aria-hidden='true'
-        /> */}
         <div className='mx-auto max-w-7xl px-6 py-32 sm:py-40 lg:px-8'>
           <div className='mx-auto max-w-2xl lg:mx-0 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:gap-y-6 xl:grid-cols-1 xl:grid-rows-1 xl:gap-x-8'>
             <h1 className='max-w-2xl text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:col-span-2 xl:col-auto'>
@@ -19,24 +18,21 @@ function Home() {
             </h1>
             <div className='mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1'>
               <p className='text-lg leading-8 text-gray-600'>
-                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-                lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-                fugiat aliqua. Anim aute id magna aliqua ad ad non deserunt
-                sunt. Qui irure qui lorem cupidatat commodo.
+                Say goodbye to endless searching and hello to personalized
+                matches tailored just for you. We connect individuals with the
+                perfect therapist while empowering therapists to grow their
+                practice with precision and ease. Discover the future of therapy
+                matchmaking and embark on your journey to a happier, healthier
+                you.
               </p>
+
               <div className='mt-10 flex items-center gap-x-6'>
                 <Link
-                  to='/signup'
+                  to={isLoggedIn ? '/user' : '/signup'}
                   className='rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400'
                 >
                   Get started
                 </Link>
-                {/* <a
-                  href='#'
-                  className='text-sm font-semibold leading-6 text-gray-900'
-                >
-                  Learn more <span aria-hidden='true'>→</span>
-                </a> */}
               </div>
             </div>
             <img

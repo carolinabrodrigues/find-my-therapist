@@ -141,8 +141,8 @@ function User() {
       // IF THERAPIST
       return (
         <>
-          <h2>Pending Matches</h2>
-          <p>
+          <h2 className='text-2xl text-semibold my-8'>Pending Matches</h2>
+          <p className='text-xl'>
             You have {showPendingMatches.length} matches waiting for your review
           </p>
           {showPendingMatches.length > 0 && (
@@ -238,10 +238,16 @@ function User() {
   return (
     <div>
       <NavbarApp />
-      <h1>
-        Welcome back, {user.firstName} {user.lastName}
-      </h1>
-      {profile && matches && showMatchesCards(user)}
+      <div className='relative isolate overflow-hidden pt-14'>
+        <div className='mx-auto max-w-7xl px-6 py-12 sm:py-12 lg:px-8'>
+          <div className='mx-auto max-w-5xl lg:mx-0 '>
+            <h1 className='text-4xl font-bold my-5'>
+              Welcome back, {user.firstName}
+            </h1>
+            {profile && matches && showMatchesCards(user)}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Signup from './components/Signup';
-import Login from './components/Login';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
 import User from './pages/User';
 import MatchedProfiles from './pages/MatchedProfiles';
 import Questions from './pages/Questions';
