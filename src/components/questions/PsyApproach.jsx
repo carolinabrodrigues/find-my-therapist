@@ -63,7 +63,7 @@ function PsyApproach() {
                 value={psyApproach}
                 onChange={setPsyApproach}
               >
-                <CustomCheckbox padding='10' value='Cognitive Behavioral'>
+                <CustomCheckbox padding='12' value='Cognitive Behavioral'>
                   <div className='text-left w-full'>
                     <div className='font-semibold'>COGNITIVE BEHAVIORAL</div>
                     <p>
@@ -73,7 +73,7 @@ function PsyApproach() {
                   </div>
                 </CustomCheckbox>
                 <CustomCheckbox
-                  padding='10'
+                  padding='12'
                   className='w-full'
                   value='Psychoanalytical'
                 >
@@ -85,7 +85,7 @@ function PsyApproach() {
                     </p>
                   </div>
                 </CustomCheckbox>
-                <CustomCheckbox padding='10' value='Humanistic'>
+                <CustomCheckbox padding='12' value='Humanistic'>
                   <div className='text-left w-full'>
                     <div className='font-semibold'>HUMANISTIC</div>
                     <p>
@@ -94,7 +94,7 @@ function PsyApproach() {
                     </p>
                   </div>
                 </CustomCheckbox>
-                <CustomCheckbox padding='10' value='Systematic'>
+                <CustomCheckbox padding='12' value='Systematic'>
                   <div className='text-left w-full'>
                     <div className='font-semibold'>SYSTEMATIC</div>
                     <p>
@@ -103,7 +103,7 @@ function PsyApproach() {
                     </p>
                   </div>
                 </CustomCheckbox>
-                <CustomCheckbox padding='10' value='Constructionist'>
+                <CustomCheckbox padding='12' value='Constructionist'>
                   <div className='text-left w-full'>
                     <div className='font-semibold'>CONSTRUCTIONIST</div>
                     <p>

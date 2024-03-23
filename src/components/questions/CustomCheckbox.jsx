@@ -39,7 +39,7 @@ export const CustomCheckbox = props => {
   const styles = checkbox({ isSelected, isFocusVisible });
 
   return (
-    <label {...getBaseProps()} className='flex justify-center mt-4'>
+    <label {...getBaseProps()} className='flex justify-center'>
       <VisuallyHidden>
         <input {...getInputProps()} />
       </VisuallyHidden>
