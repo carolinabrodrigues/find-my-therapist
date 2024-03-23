@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { ProfileContext } from '../context/profile.context';
 import Age from '../components/questions/Age';
 import Gender from '../components/questions/Gender';
@@ -15,6 +15,8 @@ import NavbarApp from '../components/NavbarApp';
 
 function Questions() {
   const { page } = useContext(ProfileContext);
+
+  // GET Profile from the user
 
   const showQuestions = () => {
     if (page === 1) {

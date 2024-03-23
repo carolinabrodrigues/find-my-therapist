@@ -31,7 +31,6 @@ function Price() {
           <h2 className='text-base font-semibold py-6 text-center'>
             STEP 3: Price
           </h2>
-          {/* create another question for the therapist */}
           {user.isTherapist ? (
             <h3 className='text-3xl font-bold text-center pb-6'>
               What is your price per session?

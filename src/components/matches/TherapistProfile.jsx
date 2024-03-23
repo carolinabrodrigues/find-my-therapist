@@ -100,10 +100,19 @@ function TherapistProfile({ matchId }) {
               {matchedProfile.location}, Portugal
             </p>
           </div>
-          <div className='ProfileActions'>
-            <button>Next</button>
-            <button onClick={handleNotInterested}>Not Interested</button>
-            <button onClick={handleLike}>Like</button>
+          <div className='fixed inset-x-0 bottom-0 bg-white flex h-min p-6 justify-center gap-12'>
+            <button
+              onClick={handleNotInterested}
+              className='rounded-full bg-zinc-200 px-10 py-2.5 text-sm font-semibold shadow-sm hover:bg-zinc-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+            >
+              Not Interested
+            </button>
+            <button
+              onClick={handleLike}
+              className='rounded-full bg-indigo-600 px-20 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+            >
+              Like
+            </button>
           </div>
         </>
       )}

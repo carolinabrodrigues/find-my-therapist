@@ -312,7 +312,7 @@ function User() {
                 </>
               )}
 
-              <div className='flex justify-between pt-20 align-center'>
+              <div className='flex justify-between pt-16 align-center'>
                 {pendingProfiles || acceptedProfiles ? (
                   <p className='p-2'>Looking for new suggestions?</p>
                 ) : (

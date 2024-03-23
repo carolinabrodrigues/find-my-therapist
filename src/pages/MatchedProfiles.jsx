@@ -4,99 +4,121 @@ import ClientProfile from '../components/matches/ClientProfile';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/auth.context';
 import { MatchesContext } from '../context/matches.context';
-// import MatchesPagination from '../components/matches/MatchesPagination';
-/* import {
-  Pagination,
-  PaginationItem,
-  PaginationCursor,
-} from '@nextui-org/pagination'; */
-import {
-  Pagination,
-  Button,
-  usePagination,
-  PaginationItemType,
-} from '@nextui-org/react';
+import { getAllUserMatches } from '../api/matches.api';
+import { usePagination, PaginationItemType } from '@nextui-org/react';
 import { ChevronIcon } from '../components/ChevronIcon';
+import { useNavigate } from 'react-router-dom';
+import leftButton from '../assets/left-arrow.svg';
+import rightButton from '../assets/right-arrow.svg';
+import homeButton from '../assets/back-home-button.svg';
 
 function MatchedProfiles() {
   const { user } = useContext(AuthContext);
-  const { matches, setMatches, getUserMatches } = useContext(MatchesContext);
+  const { matches, setMatches } = useContext(MatchesContext);
+
+  const navigate = useNavigate();
 
   // PAGINATION
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1); // Start currentPage from 1
   const { activePage, range, setPage, onNext, onPrevious } = usePagination({
-    // mudar total para matches length
     total: matches.length,
     showControls: true,
     loop: true,
     boundaries: 10,
   });
 
+  const getUserMatches = async userId => {
+    try {
+      const response = await getAllUserMatches(userId);
+      setMatches(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getUserMatches(user._id);
   }, []);
 
-  const showMatchedProfiles = () => {
+  const showProfiles = () => {
     if (matches.length <= 0) {
       return (
+        /* CHANGE THIS INTERFACE */
         <p>No profiles match your criteria right now. Check your preferences</p>
       );
     }
 
+    const matchIndex = currentPage - 1; // Adjust match index
+    const match = matches[matchIndex];
     if (user.isTherapist) {
-      // if therapist, map over client profile
-      return matches.map(match => (
-        <ClientProfile key={match._id} matchId={match._id} />
-      ));
+      return <ClientProfile key={match._id} matchId={match._id} />;
     } else {
-      // if client, map over therapist profile
-      return matches.map(match => (
-        <TherapistProfile key={match._id} matchId={match._id} />
-      ));
+      return <TherapistProfile key={match._id} matchId={match._id} />;
     }
   };
 
-  // PAGINATION
-  /* const [currentPage, setCurrentPage] = useState(0);
-  const pageCount = matches.length;
-  const handlePageChange = selectedPage => {
-    setCurrentPage(selectedPage);
-  }; */
+  const showPaginationButtons = activePage => {
+    const handleBack = () => {
+      setPage(activePage - 1);
+      setCurrentPage(activePage - 1);
+    };
+
+    const handleNext = () => {
+      setPage(activePage + 1);
+      setCurrentPage(activePage + 1);
+    };
+
+    const handleBackHome = () => {
+      navigate('/user');
+    };
+
+    if (activePage === 1) {
+      return (
+        <div className='absolute top-[50%] right-5'>
+          <button onClick={handleNext}>
+            <img className='w-14' src={rightButton} alt='next icon' />
+          </button>
+        </div>
+      );
+    } else if (activePage === matches.length) {
+      return (
+        <>
+          <div className='absolute top-[50%] left-5'>
+            <button onClick={handleBack}>
+              <img className='w-14' src={leftButton} alt='back icon' />
+            </button>
+          </div>
+          <div className='absolute top-[50%] right-5'>
+            <button onClick={handleBackHome}>
+              <img className='w-14' src={homeButton} alt='home icon' />
+            </button>
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <div className='absolute top-[50%] left-5'>
+            <button onClick={handleBack}>
+              <img className='w-14' src={leftButton} alt='back icon' />
+            </button>
+          </div>
+          <div className='absolute top-[50%] right-5'>
+            <button onClick={handleNext}>
+              <img className='w-14' src={rightButton} alt='next icon' />
+            </button>
+          </div>
+        </>
+      );
+    }
+  };
+
+  console.log('active page:', activePage);
+  console.log('matches.length:', matches.length);
 
   return (
     <div>
       <NavbarApp />
-      {user && matches.length > 0 && showMatchedProfiles()}
-      {/* {user && matches.length > 0 && (
-        <TherapistProfile matchId={matches[0]._id} />
-      )} */}
-      {/* <MatchesPagination
-        pageCount={pageCount}
-        handlePageChange={handlePageChange}
-      /> */}
-      {/*  <Pagination
-        showShadow
-        loop
-        total={10}
-        page={currentPage}
-        onChange={setCurrentPage}
-      />
-      <Button
-        size='sm'
-        variant='flat'
-        onPress={() => setCurrentPage(prev => (prev > 1 ? prev - 1 : prev))}
-      >
-        Previous
-      </Button>
-      <Button
-        size='sm'
-        variant='flat'
-        color='secondary'
-        onPress={() => setCurrentPage(prev => (prev < 10 ? prev + 1 : prev))}
-      >
-        Next
-      </Button> */}
-
       <div className='flex flex-col gap-2'>
         <p>Active page: {activePage}</p>
         <ul className='flex gap-2 items-center'>
@@ -127,16 +149,6 @@ function MatchedProfiles() {
               );
             }
 
-            {
-              /*             if (page === PaginationItemType.DOTS) {
-              return (
-                <li key={page} className='w-4 h-4'>
-                  ...
-                </li>
-              );
-            } */
-            }
-
             return (
               <li
                 key={page}
@@ -149,7 +161,7 @@ function MatchedProfiles() {
                     ${activePage === page && 'bg-secondary'}`}
                   onClick={() => {
                     setPage(page);
-                    setMatches(matches[page - 1]);
+                    setCurrentPage(page); // Set currentPage directly to page number
                   }}
                 />
               </li>
@@ -157,6 +169,8 @@ function MatchedProfiles() {
           })}
         </ul>
       </div>
+      {user && matches.length > 0 && showProfiles()}
+      {showPaginationButtons(activePage)}
     </div>
   );
 }
