@@ -6,19 +6,23 @@ import {
   updateMatch,
   deleteMatch,
   getMatchedProfile,
+  getUser,
 } from '../../api/matches.api';
 import placeholder from '../../assets/picture-placeholder.jpeg';
+import { useNavigate } from 'react-router-dom';
 
 function TherapistProfile({ matchId }) {
   const { user } = useContext(AuthContext);
-  const { matches } = useContext(MatchesContext);
+  const { matches, getUserMatches } = useContext(MatchesContext);
 
   // setCurrentPage(key + 1);
 
   const [matchedProfile, setMatchedProfile] = useState(null);
 
-  console.log('user id', user._id);
-  console.log('matchId', matchId);
+  /*   console.log('user id', user._id);
+  console.log('matchId', matchId); */
+
+  const navigate = useNavigate();
 
   const getOneMatchedProfile = async (userId, matchId) => {
     try {
@@ -58,13 +62,14 @@ function TherapistProfile({ matchId }) {
   const handleNotInterested = async () => {
     try {
       await deleteMatch(matchId);
-      console.log('match deleted?');
-      // TO DO: call getUserMatches to update matches in frontend
-      // navigate to next match OR user page
+      getUserMatches(user._id);
+      navigate('/matchedprofiles');
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {}, [matchId]);
 
   return (
     <>

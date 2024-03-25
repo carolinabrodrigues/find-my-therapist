@@ -5,7 +5,7 @@ function Footer() {
   return (
     <div>
       <footer className='bg-white'>
-        <div className='mx-auto max-w-7xl px-6 pt-6 pb-12 md:flex md:items-center md:justify-between lg:px-8'>
+        <div className='mx-auto max-w-7xl px-6 pb-12 md:flex md:items-center md:justify-between lg:px-8'>
           <div className='flex justify-center space-x-6 md:order-2'>
             <a key='LinkedIn' href='https://linkedin.com/in/carolinabrodrigues'>
               <span className='sr-only'>LinkedIn</span>

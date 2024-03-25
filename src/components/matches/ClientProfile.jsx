@@ -7,15 +7,18 @@ import {
   getMatchedProfile,
 } from '../../api/matches.api';
 import placeholder from '../../assets/picture-placeholder.jpeg';
+import { useNavigate } from 'react-router-dom';
 
 function ClientProfile({ matchId }) {
   const { user } = useContext(AuthContext);
-  const { matches } = useContext(MatchesContext);
+  const { matches, getUserMatches } = useContext(MatchesContext);
 
   const [matchedProfile, setMatchedProfile] = useState(null);
 
-  console.log('user id', user._id);
-  console.log('matchId', matchId);
+  /*   console.log('user id', user._id);
+  console.log('matchId', matchId); */
+
+  const navigate = useNavigate();
 
   const getOneMatchedProfile = async (userId, matchId) => {
     try {
@@ -53,9 +56,8 @@ function ClientProfile({ matchId }) {
   const handleDismiss = async () => {
     try {
       await deleteMatch(matchId);
-      console.log('match deleted?');
-
-      // TO DO: call getUserMatches to update matches in frontend
+      getUserMatches(user._id);
+      navigate('/matchedprofiles');
     } catch (error) {
       console.log(error);
     }
