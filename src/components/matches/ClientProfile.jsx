@@ -6,6 +6,7 @@ import {
   updateMatch,
   getMatchedProfile,
 } from '../../api/matches.api';
+import placeholder from '../../assets/picture-placeholder.jpeg';
 
 function ClientProfile({ matchId }) {
   const { user } = useContext(AuthContext);
@@ -64,36 +65,81 @@ function ClientProfile({ matchId }) {
     <>
       {user && matchedProfile && (
         <>
-          <div className='ProfileHeader'>
-            <h2>
-              {matchedProfile.user.firstName} {matchedProfile.user.lastName}
-            </h2>
-            {matchedProfile.therapySetup.includes('Online') ? (
-              <p>Online</p>
-            ) : (
-              <p></p>
-            )}
-            <p>{matchedProfile.location}</p>
+          <div className='overflow-hidden rounded-lg bg-indigo-100 shadow'>
+            <div className='px-8 py-6 sm:px-8 sm:py-6'>
+              <div className='flex flex-row justify-between'>
+                <div className='flex flex-col justify-center'>
+                  <h2 className='text-indigo-800 font-bold text-xl mb-8'>
+                    {matchedProfile.user.firstName}{' '}
+                    {matchedProfile.user.lastName}
+                  </h2>
+                  <div>
+                    {matchedProfile.therapySetup.includes('Online') ? (
+                      <span className='inline-flex items-center rounded-full bg-zinc-100 px-5 py-1 text-sm font-medium text-zinc-600 mr-3'>
+                        Online
+                      </span>
+                    ) : (
+                      <span></span>
+                    )}
+                    <span className='inline-flex items-center rounded-full bg-zinc-100 px-5 py-1 text-sm font-medium text-zinc-600'>
+                      {matchedProfile.location}
+                    </span>
+                  </div>
+                </div>
+                <div className='mb-4 flex-shrink-0 sm:mb-0 sm:mr-4'>
+                  <img
+                    src={placeholder}
+                    className='h-32 w-full border border-gray-300 bg-white text-gray-300 sm:w-32 rounded-full'
+                  />
+                </div>
+              </div>
+            </div>
           </div>
-          <div className='ProfileDetails'>
-            <h3>Preferences</h3>
-            <p>Price per Session</p>
-            <p>Up to {matchedProfile.price}€</p>
 
-            <p>Psychological Approach</p>
-            {matchedProfile.psyApproach.map(approach => {
-              return <p key={approach.id}>{approach}</p>;
-            })}
+          <div className='grid grid-cols-2 gap-x-6 xs:grid-cols-1 mt-10'>
+            <div className='overflow-hidden rounded-xl shadow h-min'>
+              <div className='px-4 py-3 sm:px-4 bg-indigo-950'>
+                <h3 className='text-white font-bold'>Preferences</h3>
+              </div>
 
-            <h3>Personal Details</h3>
-            <p>Age</p>
-            <p>{matchedProfile.age} years old</p>
-            <p>Gender</p>
-            <p>{matchedProfile.gender}</p>
-          </div>
-          <div className='ProfileActions'>
-            <button onClick={handleDismiss}>Dismiss</button>
-            <button onClick={handleAccept}>Accept</button>
+              <div className='px-4 py-5 sm:p-6'>
+                <span className='font-semibold'>Price per Session</span>
+                <p className='mb-5'>Up to {matchedProfile.price}€</p>
+                <span className='font-semibold'>Psychological Approach</span>
+                {matchedProfile.psyApproach.map(approach => {
+                  return <p key={approach.id}>{approach}</p>;
+                })}
+              </div>
+            </div>
+
+            <div>
+              <div className='divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow mb-6'>
+                <div className='px-4 py-3 sm:px-4 bg-indigo-950'>
+                  <h3 className='text-white font-bold'>Personal Details</h3>
+                </div>
+                <div className='px-4 py-5 sm:p-6'>
+                  <span className='font-semibold'>Age</span>
+                  <p className='mb-5'>{matchedProfile.age} years old</p>
+                  <span className='font-semibold'>Gender</span>
+                  <p>{matchedProfile.gender}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className='fixed inset-x-0 bottom-0 bg-white flex h-min p-4 justify-center gap-12'>
+              <button
+                onClick={handleDismiss}
+                className='rounded-full bg-zinc-200 px-10 py-2.5 text-sm font-semibold shadow-sm hover:bg-zinc-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+              >
+                Dismiss
+              </button>
+              <button
+                onClick={handleAccept}
+                className='rounded-full bg-indigo-600 px-20 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+              >
+                Accept
+              </button>
+            </div>
           </div>
         </>
       )}

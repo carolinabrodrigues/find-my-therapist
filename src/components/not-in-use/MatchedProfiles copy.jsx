@@ -1,9 +1,9 @@
-import NavbarApp from '../components/NavbarApp';
-import TherapistProfile from '../components/matches/TherapistProfile';
-import ClientProfile from '../components/matches/ClientProfile';
+import NavbarApp from '../NavbarApp';
+import TherapistProfile from '../matches/TherapistProfile';
+import ClientProfile from '../matches/ClientProfile';
 import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../context/auth.context';
-import { MatchesContext } from '../context/matches.context';
+import { AuthContext } from '../../context/auth.context';
+import { MatchesContext } from '../../context/matches.context';
 // import MatchesPagination from '../components/matches/MatchesPagination';
 /* import {
   Pagination,
@@ -16,7 +16,7 @@ import {
   usePagination,
   PaginationItemType,
 } from '@nextui-org/react';
-import { ChevronIcon } from '../components/ChevronIcon';
+import { ChevronIcon } from '../ChevronIcon';
 
 function MatchedProfiles() {
   const { user } = useContext(AuthContext);

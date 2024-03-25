@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import NavbarApp from '../components/NavbarApp';
 import TherapistProfile from '../components/matches/TherapistProfile';
 import ClientProfile from '../components/matches/ClientProfile';
@@ -6,11 +7,11 @@ import { AuthContext } from '../context/auth.context';
 import { MatchesContext } from '../context/matches.context';
 import { getAllUserMatches } from '../api/matches.api';
 import { usePagination, PaginationItemType } from '@nextui-org/react';
-import { ChevronIcon } from '../components/ChevronIcon';
 import { useNavigate } from 'react-router-dom';
 import leftButton from '../assets/left-arrow.svg';
 import rightButton from '../assets/right-arrow.svg';
 import homeButton from '../assets/back-home-button.svg';
+// import { ChevronIcon } from '../components/not-in-use/ChevronIcon';
 
 function MatchedProfiles() {
   const { user } = useContext(AuthContext);
@@ -23,7 +24,7 @@ function MatchedProfiles() {
   const { activePage, range, setPage, onNext, onPrevious } = usePagination({
     total: matches.length,
     showControls: true,
-    loop: true,
+    loop: false,
     boundaries: 10,
   });
 
@@ -48,7 +49,7 @@ function MatchedProfiles() {
       );
     }
 
-    const matchIndex = currentPage - 1; // Adjust match index
+    const matchIndex = activePage - 1; // Adjust match index
     const match = matches[matchIndex];
     if (user.isTherapist) {
       return <ClientProfile key={match._id} matchId={match._id} />;
@@ -119,57 +120,52 @@ function MatchedProfiles() {
   return (
     <div>
       <NavbarApp />
-      <div className='flex flex-col gap-2'>
-        <p>Active page: {activePage}</p>
-        <ul className='flex gap-2 items-center'>
-          {range.map(page => {
-            if (page === PaginationItemType.NEXT) {
-              return (
-                <li key={page} aria-label='next page' className='w-4 h-4'>
-                  <button
-                    className='w-full h-full bg-default-200 rounded-full'
-                    onClick={onNext}
-                  >
-                    <ChevronIcon className='rotate-180' />
-                  </button>
-                </li>
-              );
-            }
+      <div className='relative isolate overflow-hidden pt-14 pb-16'>
+        <div className='mx-auto max-w-5xl px-6 py-12 sm:py-12 lg:px-8'>
+          <div className='mx-auto max-w-6xl lg:mx-0 '>
+            <div className='flex flex-col gap-2 items-center pb-10'>
+              <ul className='flex gap-2 items-center'>
+                {range.map(page => {
+                  if (page === PaginationItemType.NEXT) {
+                    return;
+                  }
 
-            if (page === PaginationItemType.PREV) {
-              return (
-                <li key={page} aria-label='previous page' className='w-4 h-4'>
-                  <button
-                    className='w-full h-full bg-default-200 rounded-full'
-                    onClick={onPrevious}
-                  >
-                    <ChevronIcon />
-                  </button>
-                </li>
-              );
-            }
+                  if (page === PaginationItemType.PREV) {
+                    return;
+                  }
 
-            return (
-              <li
-                key={page}
-                aria-label={`page ${page}`}
-                className='w-4 h-4 p-8'
-              >
-                <button
-                  className={`
-                    w-3 h-3 bg-sky-400 rounded-full,
-                    ${activePage === page && 'bg-secondary'}`}
-                  onClick={() => {
-                    setPage(page);
-                    setCurrentPage(page); // Set currentPage directly to page number
-                  }}
-                />
-              </li>
-            );
-          })}
-        </ul>
+                  return (
+                    <li
+                      key={page}
+                      aria-label={`page ${page}`}
+                      className='w-4 h-4'
+                    >
+                      {activePage === page ? (
+                        <button
+                          className='w-2.5 h-2.5 bg-zinc-500 rounded-full'
+                          onClick={() => {
+                            setPage(page);
+                            setCurrentPage(page); // Set currentPage directly to page number
+                          }}
+                        />
+                      ) : (
+                        <button
+                          className='w-2.5 h-2.5 bg-zinc-300 rounded-full'
+                          onClick={() => {
+                            setPage(page);
+                            setCurrentPage(page); // Set currentPage directly to page number
+                          }}
+                        />
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            {user && matches.length > 0 && showProfiles()}
+          </div>
+        </div>
       </div>
-      {user && matches.length > 0 && showProfiles()}
       {showPaginationButtons(activePage)}
     </div>
   );

@@ -69,7 +69,7 @@ function Signup() {
                   <Card>
                     <CardBody>
                       <form
-                        className='flex flex-col gap-4 h-[360px] bg-white'
+                        className='flex flex-col gap-4 h-auto bg-white'
                         onSubmit={handleSubmit}
                       >
                         <div>
