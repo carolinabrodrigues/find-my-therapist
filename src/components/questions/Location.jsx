@@ -34,12 +34,12 @@ function Location() {
   }
 
   const handleBack = () => {
-    setPage(2);
+    setPage(3);
   };
 
   const handleNext = () => {
     setProfile({ ...profile, location });
-    setPage(4);
+    setPage(5);
   };
 
   return (

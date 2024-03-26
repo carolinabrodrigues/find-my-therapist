@@ -11,22 +11,22 @@ function TherapySetup() {
   const { user } = useContext(AuthContext);
 
   const handleBack = () => {
-    setPage(3);
+    setPage(4);
   };
 
   const handleNext = () => {
     setProfile({ ...profile, therapySetup });
 
     if (user.isTherapist) {
-      // if user is therapist & picked in-person - go to page 5
+      // if user is therapist & picked in-person - go to page OfficeAddress
       if (therapySetup.includes('In-person')) {
-        setPage(5);
-      } else {
         setPage(6);
+      } else {
+        setPage(7);
       }
     } else {
-      // if user is client - go to page 7
-      setPage(6);
+      // if user is client - go to page PsyApproach
+      setPage(7);
     }
   };
 

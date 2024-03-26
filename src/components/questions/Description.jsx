@@ -7,12 +7,12 @@ function Description() {
   const { profile, setProfile, setPage } = useContext(ProfileContext);
 
   const handleBack = () => {
-    setPage(6);
+    setPage(7);
   };
 
   const handleNext = () => {
     setProfile({ ...profile, description });
-    setPage(8);
+    setPage(9);
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { ProfileContext } from '../context/profile.context';
 import Age from '../components/questions/Age';
 import Gender from '../components/questions/Gender';
@@ -12,6 +12,7 @@ import CalendarLink from '../components/questions/CalendarLink';
 import Description from '../components/questions/Description';
 import Confirmation from '../components/questions/Confirmation';
 import NavbarApp from '../components/NavbarApp';
+import Avatar from '../components/questions/Avatar';
 
 function Questions() {
   const { page } = useContext(ProfileContext);
@@ -20,37 +21,40 @@ function Questions() {
 
   const showQuestions = () => {
     if (page === 1) {
-      return <Age />;
+      return <Avatar />;
     }
     if (page === 2) {
-      return <Gender />;
+      return <Age />;
     }
     if (page === 3) {
-      return <Location />;
+      return <Gender />;
     }
     if (page === 4) {
-      return <TherapySetup />;
+      return <Location />;
     }
     if (page === 5) {
+      return <TherapySetup />;
+    }
+    if (page === 6) {
       return <OfficeAddress />;
     }
 
-    if (page === 6) {
+    if (page === 7) {
       return <PsyApproach />;
     }
-    if (page === 7) {
+    if (page === 8) {
       return <Description />;
     }
-    if (page === 8) {
+    if (page === 9) {
       return <CalendarLink />;
     }
-    if (page === 9) {
+    if (page === 10) {
       return <PriceImportant />;
     }
-    if (page === 10) {
+    if (page === 11) {
       return <Price />;
     }
-    if (page === 11) {
+    if (page === 12) {
       return <Confirmation />;
     }
   };

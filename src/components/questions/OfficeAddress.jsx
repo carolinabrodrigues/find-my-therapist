@@ -8,12 +8,12 @@ function OfficeAddress() {
   const { profile, setProfile, setPage } = useContext(ProfileContext);
 
   const handleBack = () => {
-    setPage(4);
+    setPage(5);
   };
 
   const handleNext = () => {
     setProfile({ ...profile, addressStreet, addressCode });
-    setPage(6);
+    setPage(7);
   };
 
   return (

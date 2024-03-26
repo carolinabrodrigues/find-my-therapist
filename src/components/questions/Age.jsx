@@ -6,9 +6,13 @@ function Age() {
   const [age, setAge] = useState(0);
   const { profile, setProfile, setPage } = useContext(ProfileContext);
 
+  const handleBack = () => {
+    setPage(1);
+  };
+
   const handleNext = () => {
     setProfile({ ...profile, age });
-    setPage(2);
+    setPage(3);
   };
 
   return (
@@ -33,10 +37,16 @@ function Age() {
           </div>
         </div>
       </div>
-      <div className='fixed inset-x-0 bottom-0 bg-white flex h-min p-6 justify-center gap-20'>
+      <div className='fixed inset-x-0 bottom-0 bg-white flex h-min p-6 justify-center gap-12'>
+        <button
+          onClick={handleBack}
+          className='rounded-full bg-zinc-200 px-20 py-2.5 text-sm font-semibold shadow-sm hover:bg-zinc-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+        >
+          Back
+        </button>
         <button
           onClick={handleNext}
-          className='rounded-full bg-indigo-600 px-32 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+          className='rounded-full bg-indigo-600 px-20 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
         >
           Next
         </button>

@@ -14,12 +14,12 @@ function Gender() {
   }
 
   const handleBack = () => {
-    setPage(1);
+    setPage(2);
   };
 
   const handleNext = () => {
     setProfile({ ...profile, gender });
-    setPage(3);
+    setPage(4);
   };
 
   return (

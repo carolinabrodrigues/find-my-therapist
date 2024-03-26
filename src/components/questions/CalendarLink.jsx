@@ -7,12 +7,12 @@ function CalendarLink() {
   const { profile, setProfile, setPage } = useContext(ProfileContext);
 
   const handleBack = () => {
-    setPage(7);
+    setPage(8);
   };
 
   const handleNext = () => {
     setProfile({ ...profile, calendarLink });
-    setPage(10);
+    setPage(11);
   };
 
   return (

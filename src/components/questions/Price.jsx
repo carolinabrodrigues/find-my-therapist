@@ -10,18 +10,17 @@ function Price() {
 
   const handleBack = () => {
     if (user.isTherapist) {
-      setPage(8);
-    } else {
       setPage(9);
+    } else {
+      setPage(10);
     }
   };
 
   const handleNext = () => {
-    // setProfile({ ...profile, user: user._id, price: parseInt(price) });
     const newProfile = { ...profile, user: user._id, price: parseInt(price) };
     console.log('new profile inside handle next', newProfile);
     handleSubmit(newProfile);
-    setPage(11);
+    setPage(12);
   };
 
   return (

@@ -55,6 +55,7 @@ function App() {
             </IsPrivate>
           }
         />
+
         <Route path='*' element={<Error />} />
       </Routes>
     </div>

@@ -13,24 +13,24 @@ function PsyApproach() {
   const handleBack = () => {
     if (user.isTherapist) {
       if (profile.therapySetup.includes('In-person')) {
-        setPage(5);
+        setPage(6);
       } else {
-        setPage(4);
+        setPage(5);
       }
     } else {
-      setPage(4);
+      setPage(5);
     }
   };
 
   const handleNext = () => {
     setProfile({ ...profile, psyApproach });
 
-    // if user is therapist - go to page 7
+    // if user is therapist - go to page Description
     if (user.isTherapist) {
-      setPage(7);
+      setPage(8);
     } else {
-      // if user is client - go to page 9
-      setPage(9);
+      // if user is client - go to page PriceImportant
+      setPage(10);
     }
   };
 

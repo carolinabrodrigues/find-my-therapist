@@ -16,18 +16,17 @@ function PriceImportant() {
   }
 
   const handleBack = () => {
-    setPage(6);
+    setPage(7);
   };
 
   const handleNext = () => {
     if (priceImportant === 'no') {
-      // setProfile({ ...profile, price: 0, user: user._id }); // Set price to 0 if not important
       const newProfile = { ...profile, user: user._id, price: 0 };
       console.log('new profile inside handle next', newProfile);
       handleSubmit(newProfile);
-      setPage(11);
+      setPage(12);
     } else {
-      setPage(10); // Proceed to next question if price is important
+      setPage(11); // Proceed to next question if price is important
     }
   };
 
