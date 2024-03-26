@@ -54,7 +54,7 @@ function Signup() {
           <h2 className='mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900'>
             Register for Free
           </h2>
-          <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]'>
+          <div className='mt-10 sm:mx-auto sm:w-full'>
             <div className='bg-white px-6 py-8 shadow sm:rounded-lg sm:px-12'>
               <Tabs
                 aria-label='Options'
