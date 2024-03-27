@@ -65,7 +65,9 @@ button:focus-visible {
   }
 }
 
-.avatar-icon svg,
-img {
+.avatar-icon > svg {
+  border-radius: 50%;
+}
+.avatar-icon > img {
   border-radius: 50%;
 }

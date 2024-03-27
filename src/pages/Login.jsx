@@ -39,13 +39,13 @@ function Login() {
     <div className='flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8 '>
       <div className='sm:mx-auto sm:w-full sm:max-w-md'>
         <div className='flex w-full flex-col'>
-          <a href='/' className='-m-1.5 p-1.5'>
+          <Link to='/' className=''>
             <img
               className='mx-auto h-10 w-auto'
               src={logo}
               alt='Find My Therapist'
             />
-          </a>
+          </Link>
 
           <h2 className='mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900'>
             Login to your Account
