@@ -8,7 +8,6 @@ import { RadioGroup } from '@headlessui/react';
 function Avatar() {
   const { profile, setProfile, setPage } = useContext(ProfileContext);
   const [picture, setPicture] = useState(null);
-  // const [avatarQuery, setAvatarQuery] = useState('');
   const [displayAvatarOptions, setDisplayAvatarOptions] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
