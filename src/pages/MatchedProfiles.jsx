@@ -114,9 +114,6 @@ function MatchedProfiles() {
     }
   };
 
-  console.log('active page:', activePage);
-  console.log('matches.length:', matches.length);
-
   return (
     <div>
       <NavbarApp />

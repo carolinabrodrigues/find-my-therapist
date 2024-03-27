@@ -6,21 +6,16 @@ import {
   updateMatch,
   deleteMatch,
   getMatchedProfile,
-  getUser,
 } from '../../api/matches.api';
-import placeholder from '../../assets/picture-placeholder.jpeg';
 import { useNavigate } from 'react-router-dom';
+import HTMLReactParser from 'html-react-parser';
+import placeholder from '../../assets/placeholderAvatar.svg';
 
 function TherapistProfile({ matchId }) {
   const { user } = useContext(AuthContext);
   const { matches, getUserMatches } = useContext(MatchesContext);
 
-  // setCurrentPage(key + 1);
-
   const [matchedProfile, setMatchedProfile] = useState(null);
-
-  /*   console.log('user id', user._id);
-  console.log('matchId', matchId); */
 
   const navigate = useNavigate();
 
@@ -28,7 +23,6 @@ function TherapistProfile({ matchId }) {
     try {
       const response = await getMatchedProfile(userId, matchId);
       setMatchedProfile(response.data);
-      console.log('response', response.data);
     } catch (error) {
       console.log(error);
     }
@@ -44,13 +38,13 @@ function TherapistProfile({ matchId }) {
   const handleLike = async () => {
     try {
       const match = matches.find(match => match._id === matchId);
+      console.log(match);
 
       if (match) {
         const updatedMatch = {
           ...match,
           matchStatus: 'Accepted by Client',
         };
-        console.log('match updated?', updatedMatch);
 
         await updateMatch(updatedMatch);
       }
@@ -68,8 +62,6 @@ function TherapistProfile({ matchId }) {
       console.log(error);
     }
   };
-
-  useEffect(() => {}, [matchId]);
 
   return (
     <>
@@ -106,8 +98,12 @@ function TherapistProfile({ matchId }) {
                     );
                   })}
                 </div>
-                <div className='mb-4 flex-shrink-0 sm:mb-0 sm:mr-4 h-32 w-full rounded-full'>
-                  {matchedProfile.picture}
+                <div className='avatar-icon mb-4 sm:mb-0 sm:mr-4 h-32 w-32 rounded-full'>
+                  {matchedProfile.picture ? (
+                    HTMLReactParser(matchedProfile.picture)
+                  ) : (
+                    <img src={placeholder} />
+                  )}
                 </div>
                 {/* <div className='mb-4 flex-shrink-0 sm:mb-0 sm:mr-4'>
                   <img

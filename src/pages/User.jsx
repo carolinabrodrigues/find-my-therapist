@@ -11,24 +11,18 @@ import {
 } from '../api/matches.api.js';
 import { MatchesContext } from '../context/matches.context.jsx';
 import searchIcon from '../assets/search-icon-gray.svg';
-import placeholder from '../assets/picture-placeholder.jpeg';
+import placeholder from '../assets/placeholderAvatar.svg';
+import HTMLReactParser from 'html-react-parser';
 
 function User() {
   const { profile, setProfile } = useContext(ProfileContext);
   const { user, setUser } = useContext(AuthContext);
   const { matches, getUserMatches } = useContext(MatchesContext);
 
-  console.log('profile:', profile);
-  console.log('user:', user);
-  console.log('matches:', matches);
-
   const navigate = useNavigate();
 
   const [pendingProfiles, setPendingProfiles] = useState(null);
   const [acceptedProfiles, setAcceptedProfiles] = useState(null);
-
-  console.log('pending profiles:', pendingProfiles);
-  console.log('accepted profiles:', acceptedProfiles);
 
   // GET Profile by User.Profile
   // to make sure we always have the most updated info
@@ -198,7 +192,11 @@ function User() {
                       className='overflow-hidden rounded-lg bg-white shadow'
                     >
                       <div className='bg-white px-4 py-3 sm:p-4 flex flex-col justify-center gap-2'>
-                        <img src={placeholder} className='rounded-lg' />
+                        {profile.picture ? (
+                          HTMLReactParser(profile.picture)
+                        ) : (
+                          <img src={placeholder} className='rounded-lg' />
+                        )}
                         <h3 className='text-bold'>
                           {profile.user.firstName} {profile.user.lastName}
                         </h3>
@@ -256,7 +254,11 @@ function User() {
                           className='overflow-hidden rounded-lg bg-white shadow'
                         >
                           <div className='bg-white px-4 py-3 sm:p-4 flex flex-col justify-center gap-2'>
-                            <img src={placeholder} className='rounded-lg' />
+                            {profile.picture ? (
+                              HTMLReactParser(profile.picture)
+                            ) : (
+                              <img src={placeholder} className='rounded-lg' />
+                            )}
                             <h3 className='text-bold'>
                               {profile.user.firstName} {profile.user.lastName}
                             </h3>
@@ -288,7 +290,11 @@ function User() {
                           className='overflow-hidden rounded-lg bg-white shadow'
                         >
                           <div className='bg-white px-4 py-3 sm:p-4 flex flex-col justify-center gap-2'>
-                            <img src={placeholder} className='rounded-lg' />
+                            {profile.picture ? (
+                              HTMLReactParser(profile.picture)
+                            ) : (
+                              <img src={placeholder} className='rounded-lg' />
+                            )}
                             <h3 className='text-bold'>
                               {profile.user.firstName} {profile.user.lastName}
                             </h3>

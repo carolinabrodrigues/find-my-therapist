@@ -6,8 +6,9 @@ import {
   updateMatch,
   getMatchedProfile,
 } from '../../api/matches.api';
-import placeholder from '../../assets/picture-placeholder.jpeg';
 import { useNavigate } from 'react-router-dom';
+import HTMLReactParser from 'html-react-parser';
+import placeholder from '../../assets/placeholderAvatar.svg';
 
 function ClientProfile({ matchId }) {
   const { user } = useContext(AuthContext);
@@ -15,16 +16,14 @@ function ClientProfile({ matchId }) {
 
   const [matchedProfile, setMatchedProfile] = useState(null);
 
-  /*   console.log('user id', user._id);
-  console.log('matchId', matchId); */
-
   const navigate = useNavigate();
+
+  console.log(user);
 
   const getOneMatchedProfile = async (userId, matchId) => {
     try {
       const response = await getMatchedProfile(userId, matchId);
       setMatchedProfile(response.data);
-      console.log('response', response.data);
     } catch (error) {
       console.log(error);
     }
@@ -37,14 +36,11 @@ function ClientProfile({ matchId }) {
     }
   }, []);
 
-  console.log('matched profile in client profile:', matchedProfile);
-
   const handleAccept = async () => {
     try {
       const match = matches.find(match => match._id === matchId);
       if (match) {
         const updatedMatch = { ...match, matchStatus: 'Accepted by Therapist' };
-        console.log('match updated?', updatedMatch);
 
         await updateMatch(updatedMatch);
       }
@@ -88,11 +84,12 @@ function ClientProfile({ matchId }) {
                     </span>
                   </div>
                 </div>
-                <div className='mb-4 flex-shrink-0 sm:mb-0 sm:mr-4'>
-                  <img
-                    src={placeholder}
-                    className='h-32 w-full border border-gray-300 bg-white text-gray-300 sm:w-32 rounded-full'
-                  />
+                <div className='avatar-icon mb-4 sm:mb-0 sm:mr-4 h-32 w-32 rounded-full'>
+                  {matchedProfile.picture ? (
+                    HTMLReactParser(matchedProfile.picture)
+                  ) : (
+                    <img src={placeholder} />
+                  )}
                 </div>
               </div>
             </div>

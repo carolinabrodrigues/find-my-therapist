@@ -64,3 +64,8 @@ button:focus-visible {
     background-color: #fafafa;
   }
 }
+
+.avatar-icon svg,
+img {
+  border-radius: 50%;
+}
