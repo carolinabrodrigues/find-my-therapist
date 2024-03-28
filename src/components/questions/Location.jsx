@@ -24,6 +24,7 @@ function Location() {
     'Madeira',
     'Açores',
     'Santarém',
+    'Setúbal',
     'Viana do Castelo',
     'Vila Real',
     'Viseu',

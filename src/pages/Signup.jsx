@@ -53,8 +53,10 @@ function Signup() {
             Register for Free
           </h2>
           <div className='mt-10 sm:mx-auto sm:w-full'>
-            <div className='bg-white px-6 py-8 shadow sm:rounded-lg sm:px-12'>
+            <div className='bg-white py-8 shadow sm:rounded-lg sm:px-12'>
               <Tabs
+                size='md'
+                fullWidth='true'
                 aria-label='Options'
                 variant='underlined'
                 selectedKey={isTherapist ? 'therapist' : 'client'}
@@ -62,12 +64,17 @@ function Signup() {
                   setIsTherapist(newKey === 'therapist')
                 }
                 style={{ backgroundColor: 'white' }}
+                classNames='no-scrollbar'
               >
-                <Tab key='client' title="I'm a Client">
+                <Tab
+                  key='client'
+                  title="I'm a Client"
+                  classNames='no-scrollbar'
+                >
                   <Card>
                     <CardBody>
                       <form
-                        className='flex flex-col gap-4 h-auto bg-white'
+                        className='flex flex-col gap-4 h-auto bg-white '
                         onSubmit={handleSubmit}
                       >
                         <div>

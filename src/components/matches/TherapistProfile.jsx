@@ -105,12 +105,6 @@ function TherapistProfile({ matchId }) {
                     <img src={placeholder} />
                   )}
                 </div>
-                {/* <div className='mb-4 flex-shrink-0 sm:mb-0 sm:mr-4'>
-                  <img
-                    src={placeholder}
-                    className='h-32 w-full border border-gray-300 bg-white text-gray-300 sm:w-32 rounded-full'
-                  />
-                </div> */}
               </div>
             </div>
           </div>

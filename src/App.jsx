@@ -9,6 +9,7 @@ import Questions from './pages/Questions';
 import IsAnon from './components/auth/IsAnon';
 import IsPrivate from './components/auth/IsPrivate';
 import Error from './pages/Error';
+import MyProfile from './pages/MyProfile';
 
 function App() {
   return (
@@ -52,6 +53,15 @@ function App() {
           element={
             <IsPrivate>
               <MatchedProfiles />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path='/myprofile'
+          element={
+            <IsPrivate>
+              <MyProfile />
             </IsPrivate>
           }
         />

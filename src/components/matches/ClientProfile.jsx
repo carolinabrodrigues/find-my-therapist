@@ -124,21 +124,20 @@ function ClientProfile({ matchId }) {
                 </div>
               </div>
             </div>
-
-            <div className='fixed inset-x-0 bottom-0 bg-white flex h-min p-4 justify-center gap-12'>
-              <button
-                onClick={handleDismiss}
-                className='rounded-full bg-zinc-200 px-10 py-2.5 text-sm font-semibold shadow-sm hover:bg-zinc-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-              >
-                Dismiss
-              </button>
-              <button
-                onClick={handleAccept}
-                className='rounded-full bg-indigo-600 px-20 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-              >
-                Accept
-              </button>
-            </div>
+          </div>
+          <div className='fixed inset-x-0 bottom-0 bg-white flex h-min p-4 justify-center gap-12'>
+            <button
+              onClick={handleDismiss}
+              className='rounded-full bg-zinc-200 px-10 py-2.5 text-sm font-semibold shadow-sm hover:bg-zinc-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+            >
+              Dismiss
+            </button>
+            <button
+              onClick={handleAccept}
+              className='rounded-full bg-indigo-600 px-20 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+            >
+              Accept
+            </button>
           </div>
         </>
       )}

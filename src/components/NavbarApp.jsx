@@ -40,7 +40,7 @@ function NavbarApp() {
             <img className='h-[25px]' src={home} alt='home icon' />
             <p className='text-xs pt-1'>Home</p>
           </Link>
-          <Link to='/profile' className='flex flex-col justify-center'>
+          <Link to='/myprofile' className='flex flex-col justify-center'>
             <img className='h-[25px]' src={profile} alt='profile icon' />
             <p className='text-xs pt-1'>Profile</p>
           </Link>
@@ -82,7 +82,7 @@ function NavbarApp() {
                   Home
                 </Link>
                 <Link
-                  href='/profile'
+                  href='/myprofile'
                   className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'
                 >
                   Profile
