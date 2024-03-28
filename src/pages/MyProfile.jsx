@@ -113,6 +113,7 @@ function MyProfile() {
         therapySetup,
         psyApproach,
         price,
+        _id: user.profile,
       };
       await updateProfile(requestBody);
 
