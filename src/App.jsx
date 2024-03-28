@@ -10,6 +10,7 @@ import IsAnon from './components/auth/IsAnon';
 import IsPrivate from './components/auth/IsPrivate';
 import Error from './pages/Error';
 import MyProfile from './pages/MyProfile';
+import SingleMatchedProfile from './pages/SingleMatchedProfile';
 
 function App() {
   return (
@@ -62,6 +63,15 @@ function App() {
           element={
             <IsPrivate>
               <MyProfile />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path='/matchedprofiles/:profileId'
+          element={
+            <IsPrivate>
+              <SingleMatchedProfile />
             </IsPrivate>
           }
         />
