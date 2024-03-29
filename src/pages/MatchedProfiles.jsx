@@ -16,22 +16,37 @@ import homeButton from '../assets/back-home-button.svg';
 function MatchedProfiles() {
   const { user } = useContext(AuthContext);
   const { matches, setMatches } = useContext(MatchesContext);
+  const [showMatches, setShowMatches] = useState([]);
 
   const navigate = useNavigate();
 
   // PAGINATION
   const [currentPage, setCurrentPage] = useState(1); // Start currentPage from 1
-  const { activePage, range, setPage, onNext, onPrevious } = usePagination({
-    total: matches.length,
+  const { activePage, range, setPage } = usePagination({
+    total: showMatches.length,
     showControls: true,
     loop: false,
     boundaries: 10,
   });
 
+  console.log('matches', matches);
+  console.log('showMatches', showMatches);
+
   const getUserMatches = async userId => {
     try {
       const response = await getAllUserMatches(userId);
       setMatches(response.data);
+      const matchesResponse = response.data;
+
+      const filteredMatches = matchesResponse.filter(match => {
+        if (user.isTherapist) {
+          return match.matchStatus === 'Accepted by Client';
+        } else {
+          return match.matchStatus === 'Pending';
+        }
+      });
+
+      setShowMatches(filteredMatches);
     } catch (error) {
       console.log(error);
     }
@@ -42,7 +57,7 @@ function MatchedProfiles() {
   }, []);
 
   const showProfiles = () => {
-    if (matches.length <= 0) {
+    if (showMatches.length <= 0) {
       return (
         /* CHANGE THIS INTERFACE */
         <p>No profiles match your criteria right now. Check your preferences</p>
@@ -50,7 +65,7 @@ function MatchedProfiles() {
     }
 
     const matchIndex = activePage - 1; // Adjust match index
-    const match = matches[matchIndex];
+    const match = showMatches[matchIndex];
     if (user.isTherapist) {
       return <ClientProfile key={match._id} matchId={match._id} />;
     } else {
@@ -81,7 +96,7 @@ function MatchedProfiles() {
           </button>
         </div>
       );
-    } else if (activePage === matches.length) {
+    } else if (activePage === showMatches.length) {
       return (
         <>
           <div className='absolute top-[50%] left-5'>
@@ -159,7 +174,7 @@ function MatchedProfiles() {
                 })}
               </ul>
             </div>
-            {user && matches.length > 0 && showProfiles()}
+            {user && showMatches.length > 0 && showProfiles()}
           </div>
         </div>
       </div>
