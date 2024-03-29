@@ -23,6 +23,7 @@ function User() {
 
   const [pendingProfiles, setPendingProfiles] = useState(null);
   const [acceptedProfiles, setAcceptedProfiles] = useState(null);
+  const [isLoading, setIsLoading] = useState(null);
 
   // GET Profile by User.Profile
   // to make sure we always have the most updated info
@@ -71,7 +72,7 @@ function User() {
       );
 
       let updatedPendingProfiles = [];
-
+      setIsLoading(true);
       for (let i = 0; i < pendingMatches.length; i++) {
         const response = await getMatchedProfile(
           user._id,
@@ -80,6 +81,7 @@ function User() {
         updatedPendingProfiles.push(response.data);
         setPendingProfiles(updatedPendingProfiles);
       }
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -92,6 +94,7 @@ function User() {
       );
 
       let updatedAcceptedProfiles = [];
+      setIsLoading(true);
 
       for (let i = 0; i < acceptedMatches.length; i++) {
         const response = await getMatchedProfile(
@@ -101,6 +104,7 @@ function User() {
         updatedAcceptedProfiles.push(response.data);
         setAcceptedProfiles(updatedAcceptedProfiles);
       }
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -237,7 +241,7 @@ function User() {
           </div>
           {matches.length > 0 && (
             <>
-              {pendingProfiles && (
+              {pendingProfiles && !isLoading && (
                 <>
                   <h3 className='text-xl text-bold mt-10 mb-4'>
                     Waiting for response
