@@ -6,7 +6,6 @@ const MatchesContext = createContext();
 
 const MatchesProviderWrapper = props => {
   const [matches, setMatches] = useState([]);
-  const [matchPage, setMatchPage] = useState(0);
 
   const getUserMatches = async userId => {
     try {

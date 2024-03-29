@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { MatchesContext } from '../../context/matches.context';
 import { AuthContext } from '../../context/auth.context';
 import { useContext, useEffect, useState, Fragment } from 'react';
@@ -21,8 +22,6 @@ function ClientProfile({ matchId }) {
   const [show, setShow] = useState(false);
 
   const navigate = useNavigate();
-
-  console.log(user);
 
   const getOneMatchedProfile = async (userId, matchId) => {
     try {
@@ -162,7 +161,6 @@ function ClientProfile({ matchId }) {
             className='pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6'
           >
             <div className='flex w-full flex-col items-center space-y-4 sm:items-end mt-16'>
-              {/* Notification panel, dynamically insert this into the live region when it needs to be displayed */}
               <Transition
                 show={show}
                 as={Fragment}

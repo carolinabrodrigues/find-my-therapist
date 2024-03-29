@@ -22,7 +22,6 @@ function PriceImportant() {
   const handleNext = () => {
     if (priceImportant === 'no') {
       const newProfile = { ...profile, user: user._id, price: 0 };
-      console.log('new profile inside handle next', newProfile);
       handleSubmit(newProfile);
       setPage(12);
     } else {

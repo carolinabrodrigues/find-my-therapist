@@ -30,8 +30,6 @@ function SingleMatchedProfile() {
     }
   };
 
-  // ADD: GET Profile by Id
-
   const getMatchedProfile = async id => {
     try {
       const response = await getProfile(id);
@@ -198,7 +196,7 @@ function SingleMatchedProfile() {
                 <div className='px-4 py-5 sm:p-6'>
                   <span className='font-semibold'>Price per Session</span>
                   <p className='mb-5'>{matchedProfile.price}€</p>
-                  {/* Office Address only if Therapy Setup === In-person */}
+                  {/* Office Address only if Therapy Setup is In-person */}
                   {matchedProfile.therapySetup.includes('In-person') ? (
                     <div>
                       <span className='font-semibold'>Office Address</span>
@@ -225,9 +223,6 @@ function SingleMatchedProfile() {
       );
     }
   };
-
-  console.log('profile id', profileId);
-  console.log('user', user);
 
   return (
     <div>

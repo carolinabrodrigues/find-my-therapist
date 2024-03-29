@@ -42,7 +42,6 @@ function TherapistProfile({ matchId }) {
   const handleLike = async () => {
     try {
       const match = matches.find(match => match._id === matchId);
-      console.log(match);
 
       if (match) {
         const updatedMatch = {
@@ -190,7 +189,6 @@ function TherapistProfile({ matchId }) {
             className='pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6'
           >
             <div className='flex w-full flex-col items-center space-y-4 sm:items-end mt-16'>
-              {/* Notification panel, dynamically insert this into the live region when it needs to be displayed */}
               <Transition
                 show={show}
                 as={Fragment}

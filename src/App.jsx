@@ -11,12 +11,14 @@ import IsPrivate from './components/auth/IsPrivate';
 import Error from './pages/Error';
 import MyProfile from './pages/MyProfile';
 import SingleMatchedProfile from './pages/SingleMatchedProfile';
+import LoadingSpinner from './components/LoadingSpinner';
 
 function App() {
   return (
     <div>
       <Routes>
         <Route path='/' element={<Home />} />
+
         <Route
           path='/signup'
           element={
@@ -33,6 +35,7 @@ function App() {
             </IsAnon>
           }
         />
+
         <Route
           path='/questions'
           element={

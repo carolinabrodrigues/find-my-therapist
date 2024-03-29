@@ -21,8 +21,6 @@ function Login() {
       // login responds with the jwt token
       const response = await login(user);
 
-      // console.log(response.data.authToken); // -> token
-
       // we need to storage the token in the browser local storage - using the function
       storeToken(response.data.authToken);
       authenticateUser();

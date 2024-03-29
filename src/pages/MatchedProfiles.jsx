@@ -11,7 +11,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import leftButton from '../assets/left-arrow.svg';
 import rightButton from '../assets/right-arrow.svg';
 import homeButton from '../assets/back-home-button.svg';
-// import { ChevronIcon } from '../components/not-in-use/ChevronIcon';
 
 function MatchedProfiles() {
   const { user } = useContext(AuthContext);
@@ -21,16 +20,13 @@ function MatchedProfiles() {
   const navigate = useNavigate();
 
   // PAGINATION
-  const [currentPage, setCurrentPage] = useState(1); // Start currentPage from 1
+  const [currentPage, setCurrentPage] = useState(1);
   const { activePage, range, setPage } = usePagination({
     total: showMatches.length,
     showControls: true,
     loop: false,
     boundaries: 10,
   });
-
-  console.log('matches', matches);
-  console.log('showMatches', showMatches);
 
   const getUserMatches = async userId => {
     try {
@@ -58,7 +54,6 @@ function MatchedProfiles() {
 
   const showProfiles = () => {
     if (showMatches.length <= 0) {
-      console.log('message here');
       return (
         <div className='grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8'>
           <div className='text-center'>
@@ -86,8 +81,6 @@ function MatchedProfiles() {
       return <TherapistProfile key={match._id} matchId={match._id} />;
     }
   };
-
-  console.log('show matches', showMatches);
 
   const showPaginationButtons = activePage => {
     const handleBack = () => {
@@ -173,7 +166,7 @@ function MatchedProfiles() {
                           className='w-2.5 h-2.5 bg-zinc-500 rounded-full'
                           onClick={() => {
                             setPage(page);
-                            setCurrentPage(page); // Set currentPage directly to page number
+                            setCurrentPage(page);
                           }}
                         />
                       ) : (
@@ -181,7 +174,7 @@ function MatchedProfiles() {
                           className='w-2.5 h-2.5 bg-zinc-300 rounded-full'
                           onClick={() => {
                             setPage(page);
-                            setCurrentPage(page); // Set currentPage directly to page number
+                            setCurrentPage(page);
                           }}
                         />
                       )}

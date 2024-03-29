@@ -48,7 +48,7 @@ function PsyApproach() {
             </h3>
           ) : (
             <h3 className='text-3xl font-bold text-center pb-6'>
-              What is the psychological approach you can relate to?
+              Which of these psychological approaches resonates better with you?
             </h3>
           )}
 
@@ -69,8 +69,7 @@ function PsyApproach() {
                       COGNITIVE BEHAVIORAL
                     </div>
                     <p>
-                      Analyzes and modifies thought patterns and behaviors to
-                      alleviate psychological distress.
+                      Helps you change how you think and act to feel better.
                     </p>
                   </div>
                 </CustomCheckbox>
@@ -82,8 +81,8 @@ function PsyApproach() {
                   <div className='text-left w-full'>
                     <div className='font-semibold pb-1.5'>PSYCHOANALYTICAL</div>
                     <p>
-                      Explores unconscious processes and childhood experiences
-                      to understand and treat mental disorders.
+                      Looks at your past and hidden thoughts to figure out why
+                      you feel the way you do.
                     </p>
                   </div>
                 </CustomCheckbox>
@@ -91,8 +90,8 @@ function PsyApproach() {
                   <div className='text-left w-full'>
                     <div className='font-semibold pb-1.5'>HUMANISTIC</div>
                     <p>
-                      Focuses on self-actualization and subjective experiences
-                      to promote personal growth and well-being.
+                      Encourages you to become your best self and focus on what
+                      makes you happy.
                     </p>
                   </div>
                 </CustomCheckbox>
@@ -100,8 +99,8 @@ function PsyApproach() {
                   <div className='text-left w-full'>
                     <div className='font-semibold pb-1.5'>SYSTEMATIC</div>
                     <p>
-                      Studies the interaction between individuals and their
-                      social environments to understand behavior.
+                      Studies how your surroundings affect how you behave and
+                      feel.
                     </p>
                   </div>
                 </CustomCheckbox>
@@ -109,8 +108,8 @@ function PsyApproach() {
                   <div className='text-left w-full'>
                     <div className='font-semibold pb-1.5'>CONSTRUCTIONIST</div>
                     <p>
-                      Investigates how individuals construct meaning through
-                      language and social interactions.
+                      Explores how you create meaning from what you say and how
+                      you interact with others.
                     </p>
                   </div>
                 </CustomCheckbox>

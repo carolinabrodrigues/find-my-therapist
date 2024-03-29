@@ -51,7 +51,7 @@ function User() {
   useEffect(() => {
     getUserInfo(user._id).then(response => {
       getUserProfile(response.profile).then(response => {
-        /* if there's no profile yet - redirect to Questions */
+        // if there's no profile yet - redirect to Questions
         if (!response) {
           navigate('/questions');
         }
@@ -64,8 +64,6 @@ function User() {
     getUserMatches(user._id);
   }, []);
 
-  // THERAPIST: for each match accepted by therapist, I want to show the matched profile info
-  // CLIENT: for each match accepted by client or therapist, I want to show the matched profile
   const getPendingProfiles = async () => {
     try {
       const pendingMatches = matches.filter(
@@ -116,8 +114,6 @@ function User() {
       getAcceptedProfiles();
     }
   }, [matches]);
-
-  console.log('user id:', user._id);
 
   const handleMatchesButton = async () => {
     try {

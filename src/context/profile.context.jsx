@@ -13,7 +13,6 @@ const ProfileProviderWrapper = props => {
     try {
       const newProfile = await addProfile(reqBody);
       setSubmittedProfile(newProfile);
-      console.log('created profile');
     } catch (error) {
       setSubmittedProfile(error.response.data);
       console.log(error);

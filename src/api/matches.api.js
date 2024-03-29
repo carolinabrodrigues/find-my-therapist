@@ -22,16 +22,18 @@ setAuthorizationHeaders();
 // API CALLS FOR PROFILES & MATCHES
 
 // GET All Profiles
-export const getAllProfiles = () => {
+/* export const getAllProfiles = () => {
   return axios.get(`${baseURL}/profiles`);
-};
+}; */
 
 // GET one Profile by User & Match
-export const getMatchedProfile = (userId, matchId) => {
-  return axios.get(`${baseURL}/profiles/${userId}/${matchId}`).catch(error => {
+export const getMatchedProfile = async (userId, matchId) => {
+  try {
+    return await axios.get(`${baseURL}/profiles/${userId}/${matchId}`);
+  } catch (error) {
     console.error('Error fetching all profiles:', error);
     throw error;
-  });
+  }
 };
 
 // GET one Profile by Profile ID
@@ -50,9 +52,9 @@ export const updateProfile = updatedProfile => {
 };
 
 // GET All Matches
-export const getAllMatches = () => {
+/* export const getAllMatches = () => {
   return axios.get(`${baseURL}/matches`);
-};
+}; */
 
 // GET Matches per User
 export const getAllUserMatches = userId => {
@@ -60,9 +62,9 @@ export const getAllUserMatches = userId => {
 };
 
 // GET one Match by ID
-export const getMatch = id => {
+/* export const getMatch = id => {
   return axios.get(`${baseURL}/matches/${id}`);
-};
+}; */
 
 // POST Matches by Client ID
 export const addMatches = clientId => {

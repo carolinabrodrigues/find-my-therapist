@@ -18,7 +18,6 @@ function Price() {
 
   const handleNext = () => {
     const newProfile = { ...profile, user: user._id, price: parseInt(price) };
-    console.log('new profile inside handle next', newProfile);
     handleSubmit(newProfile);
     setPage(12);
   };

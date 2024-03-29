@@ -17,8 +17,6 @@ import Avatar from '../components/questions/Avatar';
 function Questions() {
   const { page } = useContext(ProfileContext);
 
-  // GET Profile from the user
-
   const showQuestions = () => {
     if (page === 1) {
       return <Avatar />;

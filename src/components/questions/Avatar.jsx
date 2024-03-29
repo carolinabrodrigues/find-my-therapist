@@ -73,18 +73,14 @@ function Avatar() {
   useEffect(() => {
     setIsLoading(true);
     const queries = generateQueries();
-    console.log(queries);
     if (avatarOptions.length === 0) {
       Promise.all(queries.map(query => getPictures(query)))
         .then(() => setIsLoading(false))
         .catch(error => console.log(error));
     }
-    console.log('avatar options inside use effect:', avatarOptions);
 
     setDisplayAvatarOptions(avatarOptions);
   }, []);
-
-  console.log('picture', picture);
 
   return (
     <div>

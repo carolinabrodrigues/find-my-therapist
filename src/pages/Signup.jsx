@@ -63,14 +63,8 @@ function Signup() {
                 onSelectionChange={newKey =>
                   setIsTherapist(newKey === 'therapist')
                 }
-                style={{ backgroundColor: 'white' }}
-                classNames='no-scrollbar'
               >
-                <Tab
-                  key='client'
-                  title="I'm a Client"
-                  classNames='no-scrollbar'
-                >
+                <Tab key='client' title="I'm a Client">
                   <Card>
                     <CardBody>
                       <form
