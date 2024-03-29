@@ -63,8 +63,8 @@ function ClientProfile({ matchId }) {
   const handleDismiss = async () => {
     try {
       await deleteMatch(matchId);
-      getUserMatches(user._id);
-      navigate('/matchedprofiles');
+      await getUserMatches(user._id);
+      navigate(0);
     } catch (error) {
       console.log(error);
     }

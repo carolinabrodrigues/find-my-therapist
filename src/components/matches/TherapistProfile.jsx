@@ -67,7 +67,7 @@ function TherapistProfile({ matchId }) {
     try {
       await deleteMatch(matchId);
       await getUserMatches(user._id);
-      navigate('/matchedprofiles');
+      navigate(0);
     } catch (error) {
       console.log(error);
     }

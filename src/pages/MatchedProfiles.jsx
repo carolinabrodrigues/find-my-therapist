@@ -11,11 +11,13 @@ import { useNavigate, Link } from 'react-router-dom';
 import leftButton from '../assets/left-arrow.svg';
 import rightButton from '../assets/right-arrow.svg';
 import homeButton from '../assets/back-home-button.svg';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 function MatchedProfiles() {
   const { user } = useContext(AuthContext);
   const { matches, setMatches } = useContext(MatchesContext);
   const [showMatches, setShowMatches] = useState([]);
+  const [isLoading, setIsLoading] = useState(null);
 
   const navigate = useNavigate();
 
@@ -43,17 +45,19 @@ function MatchedProfiles() {
       });
 
       setShowMatches(filteredMatches);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
+    setIsLoading(true);
     getUserMatches(user._id);
   }, []);
 
   const showProfiles = () => {
-    if (showMatches.length <= 0) {
+    if (showMatches.length === 0 && isLoading === false) {
       return (
         <div className='grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8'>
           <div className='text-center'>
@@ -71,14 +75,17 @@ function MatchedProfiles() {
           </div>
         </div>
       );
+    } else if (isLoading === true) {
+      return <LoadingSpinner />;
     }
-
-    const matchIndex = activePage - 1; // Adjust match index
-    const match = showMatches[matchIndex];
-    if (user.isTherapist) {
-      return <ClientProfile key={match._id} matchId={match._id} />;
-    } else {
-      return <TherapistProfile key={match._id} matchId={match._id} />;
+    if (showMatches.length > 0) {
+      const matchIndex = activePage - 1; // Adjust match index
+      const match = showMatches[matchIndex];
+      if (user.isTherapist) {
+        return <ClientProfile key={match._id} matchId={match._id} />;
+      } else {
+        return <TherapistProfile key={match._id} matchId={match._id} />;
+      }
     }
   };
 

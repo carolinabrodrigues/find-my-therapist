@@ -4,20 +4,20 @@ import { ProfileContext } from '../../context/profile.context';
 import HTMLReactParser from 'html-react-parser';
 import { getAvatar } from '../../api/avatar.api';
 import { RadioGroup } from '@headlessui/react';
+import LoadingSpinner from '../LoadingSpinner';
 
 function Avatar() {
   const { profile, setProfile, setPage } = useContext(ProfileContext);
   const [picture, setPicture] = useState(null);
-  const [displayAvatarOptions, setDisplayAvatarOptions] = useState(null);
+  const [avatarOptions, setAvatarOptions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  let avatarOptions = [];
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
   }
 
   const handleNext = () => {
+    console.log(picture);
     setProfile({ ...profile, picture });
 
     setPage(2);
@@ -64,7 +64,20 @@ function Avatar() {
     try {
       const response = await getAvatar(avatarQuery);
       let data = `${response.data}`;
-      avatarOptions.push(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getAllPictures = async queries => {
+    try {
+      let allOptions = [];
+      for (let i = 0; i < queries.length; i++) {
+        const response = await getPictures(queries[i]);
+        allOptions.push(response);
+      }
+      return allOptions;
     } catch (error) {
       console.log(error);
     }
@@ -73,18 +86,15 @@ function Avatar() {
   useEffect(() => {
     setIsLoading(true);
     const queries = generateQueries();
-    if (avatarOptions.length === 0) {
-      Promise.all(queries.map(query => getPictures(query)))
-        .then(() => setIsLoading(false))
-        .catch(error => console.log(error));
-    }
-
-    setDisplayAvatarOptions(avatarOptions);
+    getAllPictures(queries).then(response => {
+      setAvatarOptions(response);
+      setIsLoading(false);
+    });
   }, []);
 
   return (
     <div>
-      {!isLoading && (
+      {isLoading === false ? (
         <div className='my-36 mx-auto max-w-9xl px-4 sm:px-6 lg:px-8'>
           <div className='mx-auto max-w-3xl flex justify-center'>
             <div>
@@ -98,10 +108,10 @@ function Avatar() {
 
               <RadioGroup value={picture} className='mt-2'>
                 <div className='grid grid-cols-7'>
-                  {displayAvatarOptions &&
-                    displayAvatarOptions.map(option => (
+                  {avatarOptions.length > 0 &&
+                    avatarOptions.map(option => (
                       <RadioGroup.Option
-                        key={displayAvatarOptions.indexOf(option)}
+                        key={avatarOptions.indexOf(option)}
                         value={option}
                         onClick={() => setPicture(option)}
                         className={({ active, checked }) =>
@@ -138,6 +148,8 @@ function Avatar() {
             </div>
           </div>
         </div>
+      ) : (
+        <LoadingSpinner />
       )}
     </div>
   );

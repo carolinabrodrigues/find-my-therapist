@@ -8,16 +8,18 @@ import {
   getUser,
   getMatchedProfile,
   addMatches,
+  getAllUserMatches,
 } from '../api/matches.api.js';
-import { MatchesContext } from '../context/matches.context.jsx';
 import searchIcon from '../assets/search-icon-gray.svg';
 import placeholder from '../assets/placeholderAvatar.svg';
 import HTMLReactParser from 'html-react-parser';
+import LoadingSpinner from '../components/LoadingSpinner.jsx';
 
 function User() {
   const { profile, setProfile } = useContext(ProfileContext);
   const { user, setUser } = useContext(AuthContext);
-  const { matches, getUserMatches } = useContext(MatchesContext);
+  const [userInfo, setUserInfo] = useState(null);
+  const [matches, setMatches] = useState([]);
 
   const navigate = useNavigate();
 
@@ -30,7 +32,7 @@ function User() {
   const getUserInfo = async id => {
     try {
       const response = await getUser(id);
-      setUser(response.data);
+      setUserInfo(response.data);
       const userData = response.data;
       return userData;
     } catch (error) {
@@ -49,21 +51,41 @@ function User() {
     }
   };
 
-  useEffect(() => {
-    getUserInfo(user._id).then(response => {
-      getUserProfile(response.profile).then(response => {
-        // if there's no profile yet - redirect to Questions
-        if (!response) {
-          navigate('/questions');
-        }
-      });
-    });
-  }, []);
+  const getUserMatches = async userId => {
+    try {
+      const response = await getAllUserMatches(userId);
+      setMatches(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // GET Matches by User
   useEffect(() => {
-    getUserMatches(user._id);
-  }, []);
+    setIsLoading(true);
+    if (user) {
+      getUserInfo(user._id).then(response => {
+        getUserProfile(response.profile).then(response => {
+          // if there's no profile yet - redirect to Questions
+          if (!response) {
+            navigate('/questions');
+          } else {
+            getUserMatches(user._id);
+          }
+        });
+      });
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user.isTherapist) {
+      getAcceptedProfiles();
+    } else {
+      getPendingProfiles();
+      getAcceptedProfiles();
+    }
+    setIsLoading(false);
+  }, [matches]);
 
   const getPendingProfiles = async () => {
     try {
@@ -72,16 +94,14 @@ function User() {
       );
 
       let updatedPendingProfiles = [];
-      setIsLoading(true);
       for (let i = 0; i < pendingMatches.length; i++) {
         const response = await getMatchedProfile(
           user._id,
           pendingMatches[i]._id
         );
         updatedPendingProfiles.push(response.data);
-        setPendingProfiles(updatedPendingProfiles);
       }
-      setIsLoading(false);
+      setPendingProfiles(updatedPendingProfiles);
     } catch (error) {
       console.log(error);
     }
@@ -94,7 +114,6 @@ function User() {
       );
 
       let updatedAcceptedProfiles = [];
-      setIsLoading(true);
 
       for (let i = 0; i < acceptedMatches.length; i++) {
         const response = await getMatchedProfile(
@@ -102,22 +121,12 @@ function User() {
           acceptedMatches[i]._id
         );
         updatedAcceptedProfiles.push(response.data);
-        setAcceptedProfiles(updatedAcceptedProfiles);
       }
-      setIsLoading(false);
+      setAcceptedProfiles(updatedAcceptedProfiles);
     } catch (error) {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    if (user.isTherapist) {
-      getAcceptedProfiles();
-    } else {
-      getPendingProfiles();
-      getAcceptedProfiles();
-    }
-  }, [matches]);
 
   const handleMatchesButton = async () => {
     try {
@@ -137,6 +146,8 @@ function User() {
       match => match.matchStatus === 'Accepted by Client'
     );
 
+    console.log(pendingProfiles);
+
     if (user.isTherapist) {
       // IF THERAPIST
       return (
@@ -150,27 +161,29 @@ function User() {
               <div className='w-full border-t border-gray-300' />
             </div>
           </div>
-          <div className='flex justify-between align-center items-baseline'>
-            <p className='text-xl my-16'>
-              You have {showPendingMatches.length}{' '}
-              {showPendingMatches.length === 1 ? (
-                <span>match</span>
-              ) : (
-                <span>matches</span>
-              )}{' '}
-              waiting for your review
-            </p>
-            {showPendingMatches.length > 0 && (
-              <button
-                type='button'
-                className='rounded-md bg-white px-3.5 py-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
-              >
-                <Link to='/matchedprofiles'>Review pending matches</Link>
-              </button>
-            )}
-          </div>
+          {showPendingMatches && (
+            <div className='flex justify-between align-center items-baseline'>
+              <p className='text-xl my-16'>
+                You have {showPendingMatches.length}{' '}
+                {showPendingMatches.length === 1 ? (
+                  <span>match</span>
+                ) : (
+                  <span>matches</span>
+                )}{' '}
+                waiting for your review
+              </p>
+              {showPendingMatches.length > 0 && (
+                <button
+                  type='button'
+                  className='rounded-md bg-white px-3.5 py-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
+                >
+                  <Link to='/matchedprofiles'>Review pending matches</Link>
+                </button>
+              )}
+            </div>
+          )}
 
-          {acceptedProfiles && (
+          {acceptedProfiles.length > 0 && isLoading === false && (
             <>
               <h2 className='text-2xl text-semibold mt-8 mb-4'>
                 Accepted Matches
@@ -241,7 +254,7 @@ function User() {
           </div>
           {matches.length > 0 && (
             <>
-              {pendingProfiles && !isLoading && (
+              {pendingProfiles && isLoading === false ? (
                 <>
                   <h3 className='text-xl text-bold mt-10 mb-4'>
                     Waiting for response
@@ -275,8 +288,10 @@ function User() {
                     })}
                   </div>
                 </>
+              ) : (
+                <LoadingSpinner />
               )}
-              {acceptedProfiles && (
+              {acceptedProfiles.length > 0 && isLoading === false && (
                 <>
                   <h3 className='text-xl text-bold mt-10 mb-4'>
                     Accepted matches
@@ -369,7 +384,10 @@ function User() {
             <h1 className='text-4xl font-bold my-5'>
               Welcome back, {user.firstName}
             </h1>
-            {profile && matches && showMatchesCards(user)}
+            {profile &&
+              matches &&
+              isLoading === false &&
+              showMatchesCards(user)}
           </div>
         </div>
       </div>
