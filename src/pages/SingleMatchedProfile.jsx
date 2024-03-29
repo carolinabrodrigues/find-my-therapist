@@ -92,7 +92,7 @@ function SingleMatchedProfile() {
                 <h3 className='text-white font-bold'>Preferences</h3>
               </div>
 
-              <div className='px-4 py-5 sm:p-6'>
+              <div className='px-4 py-5 sm:p-6 bg-white'>
                 <span className='font-semibold'>Price per Session</span>
                 <p className='mb-5'>Up to {matchedProfile.price}€</p>
                 <span className='font-semibold'>Psychological Approach</span>
@@ -183,7 +183,7 @@ function SingleMatchedProfile() {
                 <div className='px-4 py-3 sm:px-4 bg-indigo-950'>
                   <h3 className='text-white font-bold'>Personal Details</h3>
                 </div>
-                <div className='px-4 py-5 sm:p-6'>
+                <div className='px-4 py-5 sm:p-6 bg-white'>
                   <span className='font-semibold'>Age</span>
                   <p className='mb-5'>{matchedProfile.age} years old</p>
                   <span className='font-semibold'>Gender</span>

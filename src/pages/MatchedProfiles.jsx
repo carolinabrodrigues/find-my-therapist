@@ -7,7 +7,7 @@ import { AuthContext } from '../context/auth.context';
 import { MatchesContext } from '../context/matches.context';
 import { getAllUserMatches } from '../api/matches.api';
 import { usePagination, PaginationItemType } from '@nextui-org/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import leftButton from '../assets/left-arrow.svg';
 import rightButton from '../assets/right-arrow.svg';
 import homeButton from '../assets/back-home-button.svg';
@@ -58,9 +58,23 @@ function MatchedProfiles() {
 
   const showProfiles = () => {
     if (showMatches.length <= 0) {
+      console.log('message here');
       return (
-        /* CHANGE THIS INTERFACE */
-        <p>No profiles match your criteria right now. Check your preferences</p>
+        <div className='grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8'>
+          <div className='text-center'>
+            <h1 className='mt-4 text-2xl font-semibold tracking-tight text-gray-900 sm:text-2xl'>
+              No profiles matching your criteria right now. Check again later
+            </h1>
+            <div className='mt-10 flex items-center justify-center gap-x-6'>
+              <Link
+                to='/user'
+                className='rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+              >
+                Go back home
+              </Link>
+            </div>
+          </div>
+        </div>
       );
     }
 
@@ -72,6 +86,8 @@ function MatchedProfiles() {
       return <TherapistProfile key={match._id} matchId={match._id} />;
     }
   };
+
+  console.log('show matches', showMatches);
 
   const showPaginationButtons = activePage => {
     const handleBack = () => {
@@ -174,7 +190,7 @@ function MatchedProfiles() {
                 })}
               </ul>
             </div>
-            {user && showMatches.length > 0 && showProfiles()}
+            {user && showProfiles()}
           </div>
         </div>
       </div>
