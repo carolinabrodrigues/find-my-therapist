@@ -66,7 +66,7 @@ function TherapistProfile({ matchId }) {
   const handleNotInterested = async () => {
     try {
       await deleteMatch(matchId);
-      getUserMatches(user._id);
+      await getUserMatches(user._id);
       navigate('/matchedprofiles');
     } catch (error) {
       console.log(error);
