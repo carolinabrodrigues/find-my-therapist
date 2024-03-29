@@ -227,7 +227,7 @@ function MyProfile() {
                         </label>
                         <div className='mt-2'>
                           <select
-                            defaultValue={gender}
+                            value={gender}
                             id='gender'
                             name='gender'
                             className='block w-full rounded-md border-0 bg-white py-1.5 text-black shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black'
@@ -270,7 +270,7 @@ function MyProfile() {
                             </label>
                             <div className='mt-2'>
                               <select
-                                defaultValue={location}
+                                value={location}
                                 id='location'
                                 name='location'
                                 className='block w-1/2 rounded-md border-0 bg-white py-1.5 text-black shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 [&_*]:text-black'
