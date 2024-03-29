@@ -38,9 +38,8 @@ function Signup() {
 
       const timeoutId = setTimeout(() => {
         setShow(false);
+        navigate('/login');
       }, 5000);
-
-      navigate('/login');
 
       return () => clearTimeout(timeoutId);
     } catch (error) {
