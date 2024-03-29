@@ -39,7 +39,7 @@ function Signup() {
       const timeoutId = setTimeout(() => {
         setShow(false);
         navigate('/login');
-      }, 5000);
+      }, 3000);
 
       return () => clearTimeout(timeoutId);
     } catch (error) {
@@ -287,7 +287,7 @@ function Signup() {
         aria-live='assertive'
         className='pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6'
       >
-        <div className='flex w-full flex-col items-center space-y-4 sm:items-end mt-16'>
+        <div className='flex w-full flex-col items-center space-y-4 sm:items-end'>
           <Transition
             show={show}
             as={Fragment}
