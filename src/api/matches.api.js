@@ -21,11 +21,6 @@ setAuthorizationHeaders();
 
 // API CALLS FOR PROFILES & MATCHES
 
-// GET All Profiles
-/* export const getAllProfiles = () => {
-  return axios.get(`${baseURL}/profiles`);
-}; */
-
 // GET one Profile by User & Match
 export const getMatchedProfile = async (userId, matchId) => {
   try {
@@ -51,20 +46,10 @@ export const updateProfile = updatedProfile => {
   return axios.put(`${baseURL}/profiles/${updatedProfile._id}`, updatedProfile);
 };
 
-// GET All Matches
-/* export const getAllMatches = () => {
-  return axios.get(`${baseURL}/matches`);
-}; */
-
 // GET Matches per User
 export const getAllUserMatches = userId => {
   return axios.get(`${baseURL}/matches/${userId}`);
 };
-
-// GET one Match by ID
-/* export const getMatch = id => {
-  return axios.get(`${baseURL}/matches/${id}`);
-}; */
 
 // POST Matches by Client ID
 export const addMatches = clientId => {
